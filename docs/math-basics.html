@@ -79,6 +79,27 @@
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
 <p><img src="img/output1.png" /></p>
 </div>
+<p><code>+math</code> に渡す引数の中にはプログラムを書くことができます。その場限りでよく使うコマンドを定義するのに便利です。</p>
+<div class="p-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (
+  let limx = ${\lim_{x \to 0}}
+  in ${
+    #limx \frac{x - \sin x}{x^3}
+    = #limx \frac{1 - \cos x}{3x^2}
+    = #limx \frac{\sin x}{6x}
+    = \frac{1}{6}
+  }
+);
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><img src="img/output2.png" /></p>
+</div>
+<div class="box-note">
+
+<p><strong>中級者向け</strong>: <code>+math</code> は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で <code>+math</code> 相当のコマンドを作ることができます。</p>
+</div>
+
 <h2 id="-2">関連</h2>
 <ul>
 <li><a href="./index.html#-2">数式</a></li>

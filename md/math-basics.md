@@ -32,6 +32,32 @@ standalone '<
 >
 ```
 
+`+math` に渡す引数の中にはプログラムを書くことができます。その場限りでよく使うコマンドを定義するのに便利です。
+
+```satysfi
+@require: standalone-nekketsuuu
+
+standalone '<
+%% BEGIN
++math (
+  let limx = ${\lim_{x \to 0}}
+  in ${
+    #limx \frac{x - \sin x}{x^3}
+    = #limx \frac{1 - \cos x}{3x^2}
+    = #limx \frac{\sin x}{6x}
+    = \frac{1}{6}
+  }
+);
+%% END
+>
+```
+
+<div class="box-note">
+
+**中級者向け**: `+math` は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で `+math` 相当のコマンドを作ることができます。
+
+</div>
+
 ## 関連
 
 * [数式](./index.html#-2)
