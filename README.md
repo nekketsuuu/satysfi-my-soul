@@ -1,6 +1,6 @@
 # SATySFi My Soul
 
-## Prerequisite
+## Prerequisites
 
 * Haskell Stack
 * Pandoc >= 2.3
