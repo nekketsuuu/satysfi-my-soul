@@ -10,7 +10,7 @@
 standalone '<
 %% BEGIN
 +p {
-  二次方程式 ${ax^2 + bx + c = 0} (ただし，${a \neq 0})
+  二次方程式${ax^2 + bx + c = 0}（ただし，${a \neq 0}）
 }
 %% END
 >
@@ -32,6 +32,8 @@ standalone '<
 >
 ```
 
+### 数式ブロック内でのプログラミング
+
 `+math` に渡す引数の中にはプログラムを書くことができます。その場限りでよく使うコマンドを定義するのに便利です。
 
 ```satysfi
@@ -40,8 +42,8 @@ standalone '<
 standalone '<
 %% BEGIN
 +math (
-  let limx = ${\lim_{x \to 0}}
-  in ${
+  let limx = ${\lim_{x \to 0}} in
+  ${
     #limx \frac{x - \sin x}{x^3}
     = #limx \frac{1 - \cos x}{3x^2}
     = #limx \frac{\sin x}{6x}
