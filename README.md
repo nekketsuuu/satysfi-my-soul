@@ -23,6 +23,6 @@ git c
 ## License
 
 * Contents written by Markdown: [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/)
-* Build script & templates: Apache 2.0
+* Build script & templates: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 See [LICENSE](https://github.com/nekketsuuu/how-to-satysfi/blob/master/LICENSE) for details.
