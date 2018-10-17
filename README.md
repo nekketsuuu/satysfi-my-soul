@@ -13,6 +13,13 @@
 ./build.hs
 ```
 
+Don't foreget to build before committing. A script `git-c.bash` is useful for automatical builds.
+
+```sh
+git config --local alias.c '!bash ./git-c.bash'
+git c
+```
+
 ## License
 
 * Contents written by Markdown: [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/)
