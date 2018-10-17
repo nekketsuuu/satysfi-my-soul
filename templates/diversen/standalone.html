@@ -23,7 +23,6 @@
   <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
   <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
 
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="script.js"></script>
   <script src="jquery.sticky-kit.js "></script>
 
@@ -46,15 +45,11 @@ $endif$
 $for(css)$
   <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
 $endfor$
-$if(math)$
-  $math$
-$endif$
 $for(header-includes)$
   $header-includes$
 $endfor$
 </head>
 <body>
-
 
   $if(title)$
   <div class="navbar navbar-static-top">
@@ -78,9 +73,7 @@ $endfor$
       $if(toc)$
       <div id="$idprefix$TOC" class="span3">
         <div class="well toc">
-
         $toc$
-
         </div>
       </div>
       $endif$
