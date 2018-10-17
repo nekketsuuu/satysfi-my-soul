@@ -3097,12 +3097,22 @@ table {
   padding: 0;
 }
 
-.p-code img {
+.satysfi-code img {
   max-height: 5em;
 }
 
-.large-result .p-code img {
+.large-result .satysfi-code img {
   max-height: 100%;
+}
+
+.satysfi-code span.result-img {
+  display: block;
+  width: 100%;
+  padding: 1px;
+  border: 1px solid #dddddd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 /* all tables are bordered and striped */

@@ -4,7 +4,7 @@
 
 * Haskell Stack
 * Pandoc >= 2.3
-* [SatysfiFilter](https://github.com/nekketsuuu/SatysfiFilter) >= 0.3.0.0
+* [SatysfiFilter](https://github.com/nekketsuuu/SatysfiFilter) >= 0.3.2.0
   * Run `stack install` to generate `SatysfiFilter-exe`.
 * [PandocPagetitle](https://github.com/nekketsuuu/PandocPagetitle)
   * Run `stack install` to generate `PandocPagetitle-exe`.
