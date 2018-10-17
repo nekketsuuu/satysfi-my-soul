@@ -53,10 +53,10 @@ runPandoc :: T.Text -> Sh ()
 runPandoc basename =
   run_ "pandoc" ["-f", "markdown"
                 ,"-t", "html5"
-                ,"--metadata-file=metadata.yaml"
+                ,"--metadata-file", "metadata.yaml"
                 ,"--template", toT $ templatesDiversen </> "standalone.html"
+                -- TODO(nekketsuuu): CSS=URL, not FilePath
                 ,"--css", toT $ templatesDiversen </> "template.css"
-                ,"--include-before-body", toTextIgnore $ templates </> "header.html"
                 ,"--filter", "SatysfiFilter-exe"
                 ,"--toc"
                 ,"--toc-depth=2"
