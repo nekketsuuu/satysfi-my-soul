@@ -14,4 +14,4 @@
 
 ## ライセンス
 
-"How to SATySFi" に含まれるコードたちは [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/deed.ja) ライセンスの元で配布いたします。
+"SATySFi My Soul" に含まれるコードたちは [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/deed.ja) ライセンスの元で配布いたします。
