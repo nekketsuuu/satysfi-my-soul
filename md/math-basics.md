@@ -5,14 +5,8 @@
 `${ ... }` で囲われた部分は数式として扱われます。
 
 ```satysfi
-@require: standalone
-@require: math
+@require: standalone-nekketsuuu
 
-let-block ctx +p it =
-  let ib = read-inline ctx it in
-  let ib = inline-fil ++ ib ++ inline-fil in
-  line-break false false ctx ib
-in
 standalone '<
 %% BEGIN
 +p {
@@ -27,8 +21,7 @@ standalone '<
 数式からなるブロック要素を作るには、多くの場合 `+math` を使います。末尾にセミコロンが必要です。
 
 ```satysfi
-@require: standalone
-@require: math
+@require: standalone-nekketsuuu
 
 standalone '<
 %% BEGIN
