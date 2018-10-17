@@ -27,7 +27,7 @@
   <script src="script.js"></script>
   <script src="jquery.sticky-kit.js "></script>
 
-  <title>トップページ -- SATySFi My Soul</title>
+  <title>レポートのひな型 -- SATySFi My Soul</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../templates/diversen/template.css" />
 </head>
@@ -37,7 +37,6 @@
       <div class="container">
         <span class="doc-title"><a href="https://nekketsuuu.github.io/satysfi-my-soul">SATySFi My Soul</a></span>
         <ul class="nav pull-right doc-info">
-                    <li><p class="navbar-text">最終更新: 2018 年 10 月 18 日</p></li>
                               <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
                   </ul>
       </div>
@@ -48,51 +47,64 @@
             <div id="TOC" class="span3">
         <div class="well toc">
         <ul>
-        <li><a>トップページ</a><ul>
-        <li><a href="#-1">ひな型</a></li>
-        <li><a href="#-2">数式</a></li>
-        <li><a href="#-3">ライセンス</a></li>
+        <li><a>レポートのひな型</a><ul>
+        <li><a href="#stdjareport-">stdjareport を使う方法</a></li>
+        <li><a href="#-1">他のひな型</a></li>
         </ul></li>
         </ul>
         </div>
       </div>
             <div class="span9">
-            <h1>トップページ</h1>
-<p><strong>建設中</strong></p>
-<p>このサイトでは、SATySFi のコード例を共有します。</p>
-<p>※ SATySFi はまだ初期開発段階です。新しいバージョンでは組版できなかったり挙動が変わっていたりする可能性があります。各コード片についたバージョン情報をご確認ください。</p>
-<h2 id="-1">ひな型</h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">タイトル</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="template-stdjareport.html">レポートのひな型</a></td>
-<td style="text-align: left;">stdjareport を使ったコード例</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-2">数式</h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">タイトル</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="math-basics.html">基本的な数式</a></td>
-<td style="text-align: left;">数式ブロックの使い方</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-3">ライセンス</h2>
-<p>&quot;SATySFi My Soul&quot; に含まれるコードたちは <a href="https://creativecommons.org/licenses/by/3.0/deed.ja">CC BY 3.0 Unported</a> ライセンスの元で配布いたします。</p>
+            <h1>レポートのひな型</h1>
+<h2 id="stdjareport-">stdjareport を使う方法</h2>
+<p>下の例は、まるまるコピー＆ペーストして組版することができます。</p>
+<div class="large-result">
+
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>@require: stdjareport
+
+document (|
+  title = {二次方程式の解};
+  author = {\@nekketsuuu};
+|) &#39;&lt;
+  +p {
+    このレポートでは，二次方程式${ax^2 + bx + c = 0}（ただし ${a \neq 0}）の
+    一般的な解法をあたえる．
+    二次方程式は平方完成することによって一般解を得ることができる．
+    まず両辺を${a}で割る．
+  }
+  +math (${
+    x^2 + \frac{b}{a} x + \frac{c}{a} = 0
+  });
+  +p {
+    次に平方完成する．
+  }
+  +math (${
+    \paren{x + \frac{b}{2a}}^2 - \frac{b^2}{4a^2} + \frac{c}{a} = 0
+  });
+  +p {
+    あとは移項したり両辺平方根をとったりすることを繰り返す．
+  }
+  +align [
+    [${\paren{x + \frac{b}{2a}}^2}; ${= \frac{b^2 - 4ac}{4a^2}};];
+    [${x + \frac{b}{2a}}; ${= \pm \sqrt{\frac{b^2 - 4ac}{4a^2}}};];
+    [${x}; ${= - \frac{b}{2a} \pm \frac{\sqrt{b^2 - 4ac}}{2a}}];
+  ];
+  +p {
+    以上より，${x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}}であると分かった．
+  }
+&gt;
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output3.png" /></span></p>
+</div>
+</div>
+
+<h2 id="-1">他のひな型</h2>
+<ul>
+<li><a href="index.html#-1">ひな型</a></li>
+</ul>
             </div>
     </div>
   </div>

@@ -8,7 +8,9 @@
 
 ## ひな型
 
-TODO
+| タイトル | 内容 |
+|:---------|:-----|
+| [レポートのひな型](template-stdjareport.html) | stdjareport を使ったコード例 |
 
 ## 数式
 

@@ -62,4 +62,4 @@ standalone '<
 
 ## 関連
 
-* [数式](./index.html#-2)
+* [数式](index.html#-2)
