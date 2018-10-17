@@ -21,3 +21,20 @@ standalone '<
 %% END
 >
 ```
+
+## 数式ブロック
+
+数式からなるブロック要素を作るには、多くの場合 `+math` を使います。末尾にセミコロンが必要です。
+
+```satysfi
+@require: standalone
+@require: math
+
+standalone '<
+%% BEGIN
+  +math (${
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+  });
+%% END
+>
+```
