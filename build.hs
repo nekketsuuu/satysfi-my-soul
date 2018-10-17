@@ -51,7 +51,7 @@ main = shelly $ verbosely $ do
 
 runPandoc :: T.Text -> Sh ()
 runPandoc basename =
-  run_ "pandoc" ["-f", "markdown"
+  run_ "pandoc" ["-f", "gfm"
                 ,"-t", "html5"
                 ,"--metadata-file", "metadata.yaml"
                 ,"--template", toT $ templatesDiversen </> "standalone.html"
