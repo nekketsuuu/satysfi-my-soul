@@ -15,9 +15,9 @@ let-block ctx +p it =
 in
 standalone '<
 %% BEGIN
-  +p {
-    二次方程式 ${ax^2 + bx + c = 0} (ただし，${a \neq 0})
-  }
++p {
+  二次方程式 ${ax^2 + bx + c = 0} (ただし，${a \neq 0})
+}
 %% END
 >
 ```
@@ -32,9 +32,9 @@ standalone '<
 
 standalone '<
 %% BEGIN
-  +math (${
-    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-  });
++math (${
+  x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+});
 %% END
 >
 ```
