@@ -35,12 +35,15 @@ templatesDiversen = templates </> "diversen"
 -- Sources
 
 sourceBases :: [T.Text]
-sourceBases = ["index"]
+sourceBases =
+  ["index"
+  ,"math-basics"]
 
 -- Main
 
 main :: IO ()
 main = shelly $ verbosely $ do
+  rm_rf mdGenerated
   mkdir_p mdGenerated
   mapM_ runPandoc sourceBases
   rm_rf docs
@@ -50,16 +53,18 @@ main = shelly $ verbosely $ do
     ["jquery.sticky-kit.js", "menu", "script.js", "template.css"]
 
 runPandoc :: T.Text -> Sh ()
-runPandoc basename =
+runPandoc basename = do
+  cd md
   run_ "pandoc" ["-f", "gfm"
                 ,"-t", "html5"
-                ,"--metadata-file", "metadata.yaml"
-                ,"--template", toT $ templatesDiversen </> "standalone.html"
+                ,"--metadata-file", toT $ ".." </> "metadata.yaml"
+                ,"--template", toT $ ".." </> templatesDiversen </> "standalone.html"
                 -- TODO(nekketsuuu): CSS=URL, not FilePath
-                ,"--css", toT $ templatesDiversen </> "template.css"
+                ,"--css", toT $ ".." </> templatesDiversen </> "template.css"
                 ,"--filter", "SatysfiFilter-exe"
                 ,"--toc"
                 ,"--toc-depth=2"
-                ,"-o", toT $ mdGenerated </> fromText basename <.> "html"
-                ,toT $ md </> basename <.> "md"]
+                ,"-o", toT $ generated </> fromText basename <.> "html"
+                ,toT $ basename <.> "md"]
+  cd ".."
   where toT = toTextIgnore

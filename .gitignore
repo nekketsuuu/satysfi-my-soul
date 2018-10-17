@@ -2,4 +2,7 @@
 *~
 
 # Outputs
+*.pdf
+*.saty
+*.satysfi-aux
 /md/generated

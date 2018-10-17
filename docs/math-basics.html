@@ -55,39 +55,25 @@
         <div class="well toc">
 
         <ul>
-        <li><a>トップページ</a><ul>
-        <li><a href="#-1">ひな型</a></li>
-        <li><a href="#-2">数式</a></li>
-        <li><a href="#-3">ライセンス</a></li>
+        <li><a>基本的な数式</a><ul>
+        <li><a href="#math-">math 型の値</a></li>
         </ul></li>
         </ul>
 
         </div>
       </div>
             <div class="span9">
-            <h1>トップページ</h1>
-<p><strong>建設中</strong></p>
-<p>このサイトでは、SATySFi のコード例を共有します。</p>
-<p>※ SATySFi はまだ初期開発段階です。新しいバージョンでは組版できなかったり挙動が変わっていたりする可能性があります。各コード片についたバージョン情報をご確認ください。</p>
-<h2 id="-1">ひな型</h2>
-<p>TODO</p>
-<h2 id="-2">数式</h2>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">タイトル</th>
-<th style="text-align: left;">内容</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="math-basics.html">基本的な数式</a></td>
-<td style="text-align: left;">数式ブロックの使い方</td>
-</tr>
-</tbody>
-</table>
-<h2 id="-3">ライセンス</h2>
-<p>&quot;SATySFi My Soul&quot; に含まれるコードたちは <a href="https://creativecommons.org/licenses/by/3.0/deed.ja">CC BY 3.0 Unported</a> ライセンスの元で配布いたします。</p>
+            <h1>基本的な数式</h1>
+<h2 id="math-">math 型の値</h2>
+<p><code>${ ... }</code> で囲われた部分は数式として扱われます。</p>
+<div class="p-code">
+<pre class="satysfi"><code>  +p {
+    二次方程式 ${ax^2 + bx + c = 0} (ただし，${a \neq 0})
+  }
+</code></pre>
+<p><img src="img/output0.png" /></p>
+<p>Compiled by SATySFi version 0.0.3</p>
+</div>
             </div>
     </div>
   </div>
