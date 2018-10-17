@@ -38,3 +38,7 @@ standalone '<
 %% END
 >
 ```
+
+## 関連
+
+* [数式](./index.html#-2)
