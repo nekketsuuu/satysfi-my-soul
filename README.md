@@ -6,6 +6,8 @@
 * Pandoc >= 2.3
 * [SatysfiFilter](https://github.com/nekketsuuu/SatysfiFilter)
   * Run `stack install` to generate `SatysfiFilter-exe`.
+* [PandocPagetitle](https://github.com/nekketsuuu/PandocPagetitle)
+  * Run `stack install` to generate `PandocPagetitle-exe`.
 
 ## Build
 

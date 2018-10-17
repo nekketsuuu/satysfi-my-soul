@@ -61,6 +61,7 @@ runPandoc basename = do
                 ,"--template", toT $ ".." </> templatesDiversen </> "standalone.html"
                 -- TODO(nekketsuuu): CSS=URL, not FilePath
                 ,"--css", toT $ ".." </> templatesDiversen </> "template.css"
+                ,"--filter", "PandocPagetitle-exe"
                 ,"--filter", "SatysfiFilter-exe"
                 ,"--toc"
                 ,"--toc-depth=2"
