@@ -9,6 +9,7 @@ while true ; do
       set -x ;
       ./build.hs ;
       git add docs ;
+      git status ;
       set +x ;
       echo 'Build finished. Please run this command again.'
       break ;
