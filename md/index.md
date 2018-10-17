@@ -6,7 +6,7 @@
 
 ## ひな型
 
-* 授業のレポート
+* TODO
 
 ## 数式
 
@@ -14,4 +14,4 @@
 
 ## ライセンス
 
-"How to SATySFi" は [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/deed.ja) でライセンスします。
+"How to SATySFi" に含まれるコードたちは [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/deed.ja) ライセンスの元で配布いたします。
