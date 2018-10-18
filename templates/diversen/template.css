@@ -3116,6 +3116,15 @@ table {
   max-height: 100%;
 }
 
+.satysfi-code pre {
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.satysfi-code pre code {
+  white-space: pre;
+}
+
 .satysfi-code span.result-img {
   display: block;
   width: 100%;
