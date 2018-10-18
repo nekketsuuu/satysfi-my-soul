@@ -3093,8 +3093,11 @@ table {
 }
 
 .box-note p {
-  margin: 0;
   padding: 0;
+}
+
+.box-note p:last-child {
+  margin: 0;
 }
 
 .satysfi-code img {

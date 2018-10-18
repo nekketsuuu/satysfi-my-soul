@@ -34,6 +34,12 @@ standalone '<
 >
 ```
 
+<div class="box-note">
+
+**中級者向け**: `+math` は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で `+math` 相当のコマンドを作ることができます。
+
+</div>
+
 ### 数式ブロック内でのプログラミング
 
 `+math` に渡す引数の中にはプログラムを書くことができます。その場限りでよく使う数式を定義するのに便利です。
@@ -56,9 +62,51 @@ standalone '<
 >
 ```
 
+### 数式の中で関数を使う
+
+math-cmd を作ることができる `let-math` を使えば、数式の中で関数適用することもできます。規則的な数式を自動的に生成するときに便利です。
+
+```satysfi
+@require: standalone-nekketsuuu
+
+standalone '<
+%%BEGIN
++math (
+  let-math \a n =
+    let odd = ${\mathit-token!(arabic (2 * n + 1))} in
+    ${\frac{\sin #odd t}{#odd}}
+  in ${
+    \app{f}{t} = \sin t + \a!(1) + \a!(2) + \a!(3) + \cdots
+  }
+);
+%%END
+>
+```
+
 <div class="box-note">
 
-**中級者向け**: `+math` は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で `+math` 相当のコマンドを作ることができます。
+**中級者向け**: `let-math` の定義本体部分では自分自身の再帰呼び出しができませんが、下のように `let-rec` と併用することで実装できます。
+
+```satysfi
+@require: standalone-nekketsuuu
+
+standalone '<
+%% BEGIN
++math (
+  let-rec sq n =
+    if n <= 1 then ${\sqrt{\frac{1}{2}}}
+    else
+      let sub = sq (n - 1) in
+      ${\sqrt{\frac{1}{2} + \frac{1}{2} #sub}}
+  in
+  let-math \sq n = sq n in
+  ${
+    \sq!(1) \sq!(2) \sq!(3) \cdots = \frac{2}{\pi}
+  }
+);
+%% END
+>
+```
 
 </div>
 
@@ -77,6 +125,28 @@ standalone '<
   [${\forall a, b, c.\ a \circ \paren{b \circ c}}; ${= \paren{a \circ b} \circ c}];
   [${\exists e. \forall a.\ a \circ e}; ${= a}];
   [${\forall a. \exists x.\ a \circ x}; ${= e}];
+];
+%% END
+>
+```
+
+</div>
+
+### 左揃えと右揃え
+
+<div class="result-size-middle">
+
+`+align` を使う際、1 行の数式を表すリストの要素は交互に右揃え・左揃えになります。それぞれの数式に説明を付けたいときに便利です。
+
+```satysfi
+@require: standalone-nekketsuuu
+
+standalone '<
+%% BEGIN
++align [
+  [${\forall a, b, c.\ a \circ \paren{b \circ c}}; ${= \paren{a \circ b} \circ c}; ${\text!{（結合律）}}];
+  [${\exists e. \forall a.\ a \circ e}; ${= a};                                    ${\text!{（右単位元の存在）}}];
+  [${\forall a. \exists x.\ a \circ x}; ${= e};                                    ${\text!{（右逆元の存在）}}];
 ];
 %% END
 >

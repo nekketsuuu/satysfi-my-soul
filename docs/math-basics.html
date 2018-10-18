@@ -37,7 +37,7 @@
       <div class="container">
         <span class="doc-title"><a href="https://nekketsuuu.github.io/satysfi-my-soul">SATySFi My Soul</a></span>
         <ul class="nav pull-right doc-info">
-                              <li><p class="navbar-text">最終更新: 2018 年 10 月 18 日</p></li>
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 18 日</p></li>
                                         <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
                   </ul>
       </div>
@@ -51,8 +51,8 @@
         <li><a>数式の基本的な使い方</a><ul>
         <li><a href="#math-">math 型の値</a></li>
         <li><a href="#-1">数式ブロック</a></li>
-        <li><a href="#-3">数式を並べる</a></li>
-        <li><a href="#-4">関連</a></li>
+        <li><a href="#-4">数式を並べる</a></li>
+        <li><a href="#-6">関連</a></li>
         </ul></li>
         </ul>
         </div>
@@ -82,6 +82,11 @@
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
 <p><span class="result-img"><img src="img/output1.png" /></span></p>
 </div>
+<div class="box-note">
+
+<p><strong>中級者向け</strong>: <code>+math</code> は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で <code>+math</code> 相当のコマンドを作ることができます。</p>
+</div>
+
 <h3 id="-2">数式ブロック内でのプログラミング</h3>
 <p><code>+math</code> に渡す引数の中にはプログラムを書くことができます。その場限りでよく使う数式を定義するのに便利です。</p>
 <div class="satysfi-code">
@@ -99,12 +104,46 @@
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
 <p><span class="result-img"><img src="img/output2.png" /></span></p>
 </div>
+<h3 id="-3">数式の中で関数を使う</h3>
+<p>math-cmd を作ることができる <code>let-math</code> を使えば、数式の中で関数適用することもできます。規則的な数式を自動的に生成するときに便利です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (
+  let-math \a n =
+    let odd = ${\mathit-token!(arabic (2 * n + 1))} in
+    ${\frac{\sin #odd t}{#odd}}
+  in ${
+    \app{f}{t} = \sin t + \a!(1) + \a!(2) + \a!(3) + \cdots
+  }
+);
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output3.png" /></span></p>
+</div>
 <div class="box-note">
 
-<p><strong>中級者向け</strong>: <code>+math</code> は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で <code>+math</code> 相当のコマンドを作ることができます。</p>
+<p><strong>中級者向け</strong>: <code>let-math</code> の定義本体部分では自分自身の再帰呼び出しができませんが、下のように <code>let-rec</code> と併用することで実装できます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (
+  let-rec sq n =
+    if n &lt;= 1 then ${\sqrt{\frac{1}{2}}}
+    else
+      let sub = sq (n - 1) in
+      ${\sqrt{\frac{1}{2} + \frac{1}{2} #sub}}
+  in
+  let-math \sq n = sq n in
+  ${
+    \sq!(1) \sq!(2) \sq!(3) \cdots = \frac{2}{\pi}
+  }
+);
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output4.png" /></span></p>
+</div>
 </div>
 
-<h2 id="-3">数式を並べる</h2>
+<h2 id="-4">数式を並べる</h2>
 <p>複数の数式を縦に並べたブロックを作るには <code>+align</code> を使います。引数には数式のリストのリストを渡します。それぞれの数式を分割して渡すと、分割位置で縦に揃えて表示されます。下の例では、等号の左側の位置を揃えています。</p>
 <div class="result-size-middle">
 
@@ -117,7 +156,24 @@
 ];
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output3.png" /></span></p>
+<p><span class="result-img"><img src="img/output5.png" /></span></p>
+</div>
+</div>
+
+<h3 id="-5">左揃えと右揃え</h3>
+<div class="result-size-middle">
+
+<p><code>+align</code> を使う際、1 行の数式を表すリストの要素は交互に右揃え・左揃えになります。それぞれの数式に説明を付けたいときに便利です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+align [
+  [${\forall a, b, c.\ a \circ \paren{b \circ c}}; ${= \paren{a \circ b} \circ c}; ${\text!{（結合律）}}];
+  [${\exists e. \forall a.\ a \circ e}; ${= a};                                    ${\text!{（右単位元の存在）}}];
+  [${\forall a. \exists x.\ a \circ x}; ${= e};                                    ${\text!{（右逆元の存在）}}];
+];
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output6.png" /></span></p>
 </div>
 </div>
 
@@ -126,7 +182,7 @@
 <p><strong>注意</strong>: The SATySFibook に載っている Future Work によると、<code>+align : [(math list) list] block-cmd</code> というインターフェースはぎこちないので将来的には LaTeX の <code>\align</code> 環境のようなインターフェースを用意することが検討されています。</p>
 </div>
 
-<h2 id="-4">関連</h2>
+<h2 id="-6">関連</h2>
 <ul>
 <li><a href="index.html#-2">数式</a></li>
 </ul>
