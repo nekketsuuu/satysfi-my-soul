@@ -56,30 +56,38 @@ main = shelly $ verbosely $ do
 runPandoc :: T.Text -> Sh ()
 runPandoc basename = do
   cd md
-  lastModified <- if basename == "index" then
-                    run "git" [ "log"
-                              , "-1"
-                              , "--date=format:%Y 年 %m 月 %d 日"
-                              , "--format=%ad"]
-                  else
-                    run "git" [ "log"
-                              , "-1"
-                              , "--date=format:%Y 年 %m 月 %d 日"
-                              , "--format=%ad"
-                              , "--"
-                              , toT $ basename <.> "md"]
-  run_ "pandoc" [ "-f", "gfm"
-                , "-t", "html5"
-                , "--metadata-file", toT $ ".." </> "metadata.yaml"
-                , "--metadata=date:" `T.append` lastModified
-                , "--template", toT $ ".." </> templatesDiversen </> "standalone.html"
-                -- TODO(nekketsuuu): CSS=URL, not FilePath
-                , "--css", toT $ ".." </> templatesDiversen </> "template.css"
-                , "--filter", "PandocPagetitle-exe"
-                , "--filter", "SatysfiFilter-exe"
-                , "--toc"
-                , "--toc-depth=2"
-                , "-o", toT $ generated </> fromText basename <.> "html"
-                , toT $ basename <.> "md"]
+  lastModified <-
+    run "git" [ "log"
+              , "-1"
+              , "--date=format:%Y 年 %m 月 %d 日"
+              , "--format=%ad"
+              , "--"
+              , toT $ basename <.> "md"]
+  siteModified <-
+    if basename == "index" then
+      do date <- run "git" [ "log"
+                           , "-1"
+                           , "--date=format:%Y 年 %m 月 %d 日"
+                           , "--format=%ad"]
+         return ["--metadata=sitedate:" `T.append` date]
+    else
+      return []
+  run_ "pandoc" $
+    [ "-f", "gfm"
+    , "-t", "html5"
+    , "--metadata-file", toT $ ".." </> "metadata.yaml"
+    , "--metadata=date:" `T.append` lastModified]
+    ++
+    siteModified
+    ++
+    [ "--template", toT $ ".." </> templatesDiversen </> "standalone.html"
+    -- TODO(nekketsuuu): CSS is URL, not FilePath
+    , "--css", toT $ ".." </> templatesDiversen </> "template.css"
+    , "--filter", "PandocPagetitle-exe"
+    , "--filter", "SatysfiFilter-exe"
+    , "--toc"
+    , "--toc-depth=2"
+    , "-o", toT $ generated </> fromText basename <.> "html"
+    , toT $ basename <.> "md"]
   cd ".."
   where toT = toTextIgnore

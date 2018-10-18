@@ -58,8 +58,12 @@ $endfor$
       <div class="container">
         <span class="doc-title">$title$</span>
         <ul class="nav pull-right doc-info">
+          $if(sitedate)$
+          <li><p class="navbar-text">サイト最終更新: $sitedate$</p></li>
+          $else$
           $if(date)$
           <li><p class="navbar-text">最終更新: $date$</p></li>
+          $endif$
           $endif$
           $for(author)$
           <li><p class="navbar-text">$author$</p></li>
