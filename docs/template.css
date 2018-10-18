@@ -3101,7 +3101,15 @@ table {
   max-height: 5em;
 }
 
-.large-result .satysfi-code img {
+.result-size-middle .satysfi-code img {
+  max-height: 10em;
+}
+
+.result-size-large .satysfi-code img {
+  max-height: 20em;
+}
+
+.result-size-full .satysfi-code img {
   max-height: 100%;
 }
 

@@ -51,13 +51,15 @@
         <li><a>基本的な数式</a><ul>
         <li><a href="#math-">math 型の値</a></li>
         <li><a href="#-1">数式ブロック</a></li>
-        <li><a href="#-3">関連</a></li>
+        <li><a href="#-3">数式を並べる</a></li>
+        <li><a href="#-4">関連</a></li>
         </ul></li>
         </ul>
         </div>
       </div>
             <div class="span9">
             <h1>基本的な数式</h1>
+<p>このページでは、math.satyh を使って数式を扱う方法について書きます。</p>
 <h2 id="math-">math 型の値</h2>
 <p><code>${ ... }</code> で囲われた部分は数式として扱われます。</p>
 <div class="satysfi-code">
@@ -70,7 +72,7 @@
 <p><span class="result-img"><img src="img/output0.png" /></span></p>
 </div>
 <h2 id="-1">数式ブロック</h2>
-<p>数式からなるブロック要素を作るには、多くの場合 <code>+math</code> を使います。末尾にセミコロンが必要です。</p>
+<p>数式からなるブロック要素を作るには、<code>+math</code> を使います。末尾にセミコロンが必要です。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>+math (${
@@ -102,7 +104,29 @@
 <p><strong>中級者向け</strong>: <code>+math</code> は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で <code>+math</code> 相当のコマンドを作ることができます。</p>
 </div>
 
-<h2 id="-3">関連</h2>
+<h2 id="-3">数式を並べる</h2>
+<p>複数の数式を縦に並べたブロックを作るには <code>+align</code> を使います。引数には数式のリストのリストを渡します。それぞれの数式を分割して渡すと、分割位置で縦に揃えて表示されます。</p>
+<div class="result-size-middle">
+
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+align [
+  [${\forall a, b, c.\ a \circ \paren{b \circ c}}; ${= \paren{a \circ b} \circ c}];
+  [${\exists e. \forall a.\ a \circ e}; ${= a}];
+  [${\forall a. \exists x.\ a \circ x}; ${= e}];
+];
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output3.png" /></span></p>
+</div>
+</div>
+
+<div class="box-note">
+
+<p><strong>注意</strong>: The SATySFibook に載っている Future Work によると、<code>+align : [(math list) list] block-cmd</code> というインターフェースはぎこちないので将来的には LaTeX の <code>\align</code> 環境のようなインターフェースを用意することが検討されています。</p>
+</div>
+
+<h2 id="-4">関連</h2>
 <ul>
 <li><a href="index.html#-2">数式</a></li>
 </ul>
