@@ -160,6 +160,8 @@ standalone '<
 
 </div>
 
+<!-- TODO: \math-list -->
+
 ## 関連
 
 * [数式](index.html#-2)
