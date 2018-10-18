@@ -64,7 +64,7 @@ standalone '<
 
 ### 数式の中で関数を使う
 
-math-cmd を作ることができる `let-math` を使えば、数式の中で関数適用することもできます。規則的な数式を自動的に生成するときに便利です。
+math-cmd を作る `let-math` を使えば、数式の中で関数適用することもできます。規則的な数式を自動的に生成するとき便利です。
 
 ```satysfi
 @require: standalone-nekketsuuu
