@@ -15,11 +15,11 @@
 ./build.hs
 ```
 
-Don't foreget to build before committing. A script `git-c.bash` is useful for automatical builds.
+Don't foreget to build before `git push`. A script `git-publish.bash` is useful for automatical builds.
 
 ```sh
-git config --local alias.c '!bash ./git-c.bash'
-git c
+git config --local alias.publish '!bash ./git-publish.bash'
+git publish
 ```
 
 ## License
