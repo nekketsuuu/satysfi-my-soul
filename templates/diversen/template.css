@@ -3146,6 +3146,7 @@ table {
   border-radius: 4px;
 }
 th, td {
+  padding: 3px;
   border-top: 1px solid #dddddd;
   border-left: 1px solid #dddddd;
 }
