@@ -22,6 +22,12 @@ git config --local alias.publish '!bash ./git-publish.bash'
 git publish
 ```
 
+Alternatively, [codeskyblue/fswatch](https://github.com/codeskyblue/fswatch) can be used to auto-builds.
+
+```sh
+fswatch  # settings: .fsw.yml
+```
+
 ## License
 
 * Contents written by Markdown: [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/)
