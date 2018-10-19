@@ -38,6 +38,7 @@ sourceBases :: [T.Text]
 sourceBases =
   [ "index"
   , "math-basics"
+  , "math-frac"
   , "template-stdjareport"]
 
 -- Main
