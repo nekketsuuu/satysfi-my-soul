@@ -3052,22 +3052,18 @@ h4:hover a { color: #333; } h5:hover a { color: #333; } h6:hover a { color: #333
 
 
 #TOC {    
-    overflow-y: scroll;
-    top: 0;
-    bottom: 0;
-}
-
-table {
-    min-width: 100%
+  overflow-y: scroll;
+  top: 0;
+  bottom: 0;
 }
 
 .video-js {
-    min-width:100%; 
-    max-width:100%;
+  min-width:100%; 
+  max-width:100%;
 }
 
 .vjs-fullscreen {
-    padding-top: 0px
+  padding-top: 0px
 }
 
 
@@ -3125,7 +3121,8 @@ table {
 
 /* all tables are bordered and striped */
 table {
-    margin-bottom: 20px;
+  min-width: 100%
+  margin-bottom: 20px;
   border: 1px solid #dddddd;
   border-collapse: separate;
   *border-collapse: collapse;
