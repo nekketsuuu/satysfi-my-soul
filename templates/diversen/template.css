@@ -3125,6 +3125,7 @@ table {
 
 /* all tables are bordered and striped */
 table {
+    margin-bottom: 20px;
   border: 1px solid #dddddd;
   border-collapse: separate;
   *border-collapse: collapse;
