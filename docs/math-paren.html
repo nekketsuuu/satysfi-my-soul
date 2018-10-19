@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="@nekketsuuu" />
+  <meta name="keywords" content="SATySFi, 組版" />
+
+  <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="menu/css/skins/blue.css" />
+  <link rel="stylesheet" href="menu/css/skins/graphite.css" />
+  <link rel="stylesheet" href="menu/css/skins/grey.css" />
+
+  <link rel="stylesheet" href="https://vjs.zencdn.net/5.4.4/video-js.css" />
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type='text/javascript' src='menu/js/jquery.cookie.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+  <script src="script.js"></script>
+  <script src="jquery.sticky-kit.js "></script>
+
+  <title>括弧 -- SATySFi My Soul</title>
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
+        <ul class="nav pull-right doc-info">
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 20 日</p></li>
+                                        <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
+                  </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+        <ul>
+        <li><a>括弧</a><ul>
+        <li><a href="#-1">式を丸括弧で囲う</a></li>
+        <li><a href="#-4">色々な形の括弧</a></li>
+        <li><a href="#-5">集合</a></li>
+        <li><a href="#-6">関数適用</a></li>
+        </ul></li>
+        </ul>
+        </div>
+      </div>
+            <div class="span9">
+            <h1>括弧</h1>
+<p>このページでは、SATySFi の数式で括弧を扱う方法について書きます。math.satyh を使っています。</p>
+<h2 id="-1">式を丸括弧で囲う</h2>
+<p><code>\paren{ ... }</code> を使うと、中身を丸括弧で囲うことができます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (${
+  \paren{x + a} \paren{x + b} = x^2 + \paren{a + b} x + ab
+});
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output10.png" /></span></p>
+</div>
+<h3 id="-2">括弧の大きさ</h3>
+<p><code>\paren{ ... }</code> の丸括弧は中身に応じて大きさが変わります。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (${
+  \paren{1 + a} \paren{1 + a^2} \paren{1 + a^{2^2}}
+});
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output11.png" /></span></p>
+</div>
+<h3 id="-3">丸括弧を直接書くとエラー</h3>
+<p>丸括弧 <code>( ... )</code> を直接 math 内に書くと構文エラーとなります。丸括弧記号は数式とプログラムの境界を示すのに使われているためです。</p>
+<div class="satysfi-code">
+
+<p><strong>間違ったコード例</strong></p>
+<pre class="{.satysfi"><code>+math (${
+  % これはエラー
+  (x + a)(x + b) = x^2 + (a + b)x + ab
+});
+</code></pre>
+<p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
+<pre><code>! [Syntax Error at Lexer] at &quot;error.saty&quot;, line 5, characters 2-3:
+    illegal token &#39;(&#39; in a math area
+</code></pre>
+</div>
+
+<p>バックスラッシュでエスケープすることで、大きさの変わらない単なる丸括弧を書くことはできます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+align [
+  [${}; ${\( 1 + a \)   \( 1 + a^2 \)   \( 1 + a^{2^2} \)}];
+  [${}; ${\paren{1 + a} \paren{1 + a^2} \paren{1 + a^{2^2}}}];
+];
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output12.png" /></span></p>
+</div>
+<h2 id="-4">色々な形の括弧</h2>
+<p>丸括弧以外の括弧も用意されています。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">名前</th>
+<th style="text-align: left;">コマンド</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">波括弧 <code>{ ... }</code></td>
+<td style="text-align: left;"><code>\brace</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">角括弧 <code>[ ... ]</code></td>
+<td style="text-align: left;"><code>\sqbracket</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">山括弧 <code>〈 ... 〉</code></td>
+<td style="text-align: left;"><code>\angle-bracket</code></td>
+</tr>
+</tbody>
+</table>
+<div class="result-size-middle">
+
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+align [
+  [${\text!{波括弧}}; ${\colon-rel \brace{1 + x}}];
+  [${\text!{角括弧}}; ${\colon-rel \sqbracket{1 + x}}];
+  [${\text!{山括弧}}; ${\colon-rel \angle-bracket{1 + x}}];
+];
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output13.png" /></span></p>
+</div>
+</div>
+
+<h2 id="-5">集合</h2>
+<p>集合を表すためにはコマンド <code>\set</code> が使えます。縦棒によるセパレータが真ん中に入る <code>\setsep</code> も用意されています。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (
+  let-math \bmod = math-char MathBin `mod` in
+  ${\set{0, 2, 4, 6, 8, \ldots}
+    = \setsep{n \in \mathbb{N}}{n \bmod 2 = 0}}
+);
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output14.png" /></span></p>
+</div>
+<h2 id="-6">関数適用</h2>
+<p>関数を適用するときの丸括弧 <code>f(x)</code> を表現するためには <code>\app</code> が使えます。<code>f \paren{x}</code> と書くより構造がはっきりするので便利です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (${
+  \app{f}{x} = \sum_{n = 0}^\infty \frac{\app{f^{\paren{n}}}{a}}{n\!} \paren{x - a}^n
+});
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output15.png" /></span></p>
+</div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

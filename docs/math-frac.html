@@ -11,31 +11,28 @@
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
   <![endif]-->
 
-  <link rel="stylesheet" type="text/css" href="template.css" />
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="menu/css/skins/blue.css" />
+  <link rel="stylesheet" href="menu/css/skins/graphite.css" />
+  <link rel="stylesheet" href="menu/css/skins/grey.css" />
 
-  <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://vjs.zencdn.net/5.4.4/video-js.css" />
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type='text/javascript' src='menu/js/jquery.cookie.js'></script>
   <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script>
   <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
 
-  <link href="menu/css/skins/blue.css" rel="stylesheet" type="text/css" />
-  <link href="menu/css/skins/graphite.css" rel="stylesheet" type="text/css" />
-  <link href="menu/css/skins/grey.css" rel="stylesheet" type="text/css" />
-
   <script src="script.js"></script>
   <script src="jquery.sticky-kit.js "></script>
 
   <title>分数 -- SATySFi My Soul</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="../templates/diversen/template.css" />
 </head>
 <body>
     <div class="navbar navbar-static-top">
     <div class="navbar-inner">
       <div class="container">
-        <span class="doc-title"><a href="https://nekketsuuu.github.io/satysfi-my-soul">SATySFi My Soul</a></span>
+        <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
         <ul class="nav pull-right doc-info">
                               <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 19 日</p></li>
                                         <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
@@ -49,16 +46,16 @@
         <div class="well toc">
         <ul>
         <li><a>分数</a><ul>
-        <li><a href="#-1">分数</a></li>
+        <li><a href="#-1">通常の分数</a></li>
         </ul></li>
         </ul>
         </div>
       </div>
             <div class="span9">
             <h1>分数</h1>
-<p>このページでは、数式として分数を出力する方法について書きます。</p>
-<h2 id="-1">分数</h2>
-<p>通常の分数を表すには <code>\frac</code> コマンドを使います。</p>
+<p>このページでは、SATySFi で数式として分数を出力する方法について書きます。math.satyh を使っています。</p>
+<h2 id="-1">通常の分数</h2>
+<p>単なる分数 (fraction) を表すには <code>\frac</code> コマンドを使います。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>+math (${
@@ -67,6 +64,33 @@
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
 <p><span class="result-img"><img src="img/output7.png" /></span></p>
+</div>
+<h3 id="-2">インラインの分数</h3>
+<p>行内にも分数を書くことができます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+p {
+  リーマンゼータ関数の非自明な零点の実部はすべて${\frac{1}{2}}であるか？
+}
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output8.png" /></span></p>
+</div>
+<div class="box-note">
+
+<p><strong>メモ</strong>: LaTeX のように、分数がインラインにあるときは自動的に表示形式を変える機能があると良いかもしれません。</p>
+</div>
+
+<h3 id="-3">連分数</h3>
+<p><code>\frac</code> コマンドを入れ子にすることで連分数を記述できます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (${
+  x = a + \frac{1}{b + \frac{1}{c}}
+});
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output9.png" /></span></p>
 </div>
             </div>
     </div>
