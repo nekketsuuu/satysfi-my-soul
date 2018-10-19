@@ -24,7 +24,7 @@ docs :: Shelly.FilePath
 docs = "docs"
 
 docsTmp :: Shelly.FilePath
-docsTmp = docs </> generated </> "tmp"
+docsTmp = docs </> "tmp"
 
 templates :: Shelly.FilePath
 templates = "templates"
@@ -39,6 +39,7 @@ sourceBases =
   [ "index"
   , "math-basics"
   , "math-frac"
+  , "math-paren"
   , "template-stdjareport"]
 
 -- Main
@@ -64,7 +65,7 @@ runPandoc basename = do
               , "--format=%ad"
               , "--"
               , toT $ basename <.> "md"]
-  siteModified <-
+  siteModifiedData <-
     if basename == "index" then
       do date <- run "git" [ "log"
                            , "-1"
@@ -76,10 +77,10 @@ runPandoc basename = do
   run_ "pandoc" $
     [ "-f", "gfm"
     , "-t", "html5"
-    , "--metadata-file", toT $ ".." </> "metadata.yaml"
+    , "--metadata-file", toT $ ".." </> "metadata.yml"
     , "--metadata=date:" `T.append` lastModified]
     ++
-    siteModified
+    siteModifiedData
     ++
     [ "--template", toT $ ".." </> templatesDiversen </> "standalone.html"
     -- TODO(nekketsuuu): CSS is URL, not FilePath
