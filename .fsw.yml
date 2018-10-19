@@ -9,6 +9,7 @@ triggers:
 - name: ""
   pattens:
   - 'build.hs'
+  - 'metadata.yml'
   - '**/*.md'
   - '**/*.html'
   - '**/*.css'
