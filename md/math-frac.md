@@ -1,10 +1,10 @@
 # 分数
 
-このページでは、SATySFi で数式として分数を出力する方法について書きます。
+このページでは、SATySFi で数式として分数を出力する方法について書きます。math.satyh を使っています。
 
 ## 通常の分数
 
-単なる分数を表すには `\frac` コマンドを使います (fraction)。
+単なる分数 (fraction) を表すには `\frac` コマンドを使います。
 
 ```satysfi
 @require: standalone-nekketsuuu
