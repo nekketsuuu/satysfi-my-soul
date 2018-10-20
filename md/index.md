@@ -20,6 +20,12 @@
 | [分数](math-frac.html) | 分数、連分数 |
 | [括弧](math-paren.html) | 丸括弧、色々な形の括弧、集合、関数適用 `f(x)` の括弧 |
 
+## その他
+
+| タイトル | 内容 |
+|:---------|:-----|
+| [典型的なエラー](errors.html) | 典型的なエラーメッセージと、その解決法 |
+
 ## ライセンス
 
 "SATySFi My Soul" に含まれるコードたちは [CC BY 3.0 Unported](https://creativecommons.org/licenses/by/3.0/deed.ja) ライセンスの元で配布いたします。

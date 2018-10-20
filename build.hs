@@ -37,10 +37,11 @@ templatesDiversen = templates </> "diversen"
 sourceBases :: [T.Text]
 sourceBases =
   [ "index"
+  , "template-stdjareport"
   , "math-basics"
   , "math-frac"
   , "math-paren"
-  , "template-stdjareport"]
+  , "errors"]
 
 -- Main
 
