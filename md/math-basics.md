@@ -34,7 +34,7 @@ standalone '<
 >
 ```
 
-<div class="box-note">
+<div class="box-note" markdown="1">
 
 **中級者向け**: `+math` は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で `+math` 相当のコマンドを作ることができます。
 
@@ -83,7 +83,7 @@ standalone '<
 >
 ```
 
-<div class="box-note">
+<div class="box-note" markdown="1">
 
 **中級者向け**: `let-math` の定義本体部分では自分自身の再帰呼び出しができませんが、下のように `let-rec` と併用することで実装できます。
 
@@ -114,7 +114,7 @@ standalone '<
 
 複数の数式を縦に並べたブロックを作るには `+align` を使います。引数には数式のリストのリストを渡します。それぞれの数式を分割して渡すと、分割位置で縦に揃えて表示されます。下の例では、等号の左側の位置を揃えています。
 
-<div class="result-size-middle">
+<div class="result-size-middle" markdown="1">
 
 ```satysfi
 @require: standalone-nekketsuuu
@@ -134,7 +134,7 @@ standalone '<
 
 ### 左揃えと右揃え
 
-<div class="result-size-middle">
+<div class="result-size-middle" markdown="1">
 
 `+align` を使う際、1 行の数式を表すリストの要素は交互に右揃え・左揃えになります。それぞれの数式に説明を付けたいときに便利です。
 
@@ -154,7 +154,7 @@ standalone '<
 
 </div>
 
-<div class="box-note">
+<div class="box-note" markdown="1">
 
 **注意**: The SATySFibook に載っている Future Work によると、`+align : [(math list) list] block-cmd` というインターフェースはぎこちないので将来的には LaTeX の `\align` 環境のようなインターフェースを用意することが検討されています。
 

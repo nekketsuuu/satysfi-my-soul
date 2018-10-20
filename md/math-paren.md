@@ -38,7 +38,7 @@ standalone '<
 
 丸括弧 `( ... )` を直接 math 内に書くと構文エラーとなります。丸括弧記号は数式とプログラムの境界を示すのに使われているためです。
 
-<div class="satysfi-code">
+<div class="satysfi-code" markdown="1">
 
 **間違ったコード例**
 
@@ -60,7 +60,7 @@ standalone '<
 
 バックスラッシュでエスケープすることで、大きさの変わらない単なる丸括弧を書くことはできます。
 
-<div class="result-size-middle">
+<div class="result-size-middle" markdown="1">
 
 ```satysfi
 @require: standalone-nekketsuuu
@@ -87,7 +87,7 @@ standalone '<
 | 角括弧 `[ ... ]` | `\sqbracket` |
 | 山括弧 `〈 ... 〉` | `\angle-bracket` |
 
-<div class="result-size-middle">
+<div class="result-size-middle" markdown="1">
 
 ```satysfi
 @require: standalone-nekketsuuu

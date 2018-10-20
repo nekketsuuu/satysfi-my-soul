@@ -75,7 +75,15 @@ runPandoc basename = do
     else
       return []
   run_ "pandoc" $
-    [ "-f", "gfm"
+    -- I use deprecated `markdown_github` instead of `gfm` to use several extensions.
+    -- TODO(nekketsuuu): Use `gfm`
+    [ "-f", "markdown_github" `T.append`
+            "+fenced_code_attributes" `T.append`
+            "+markdown_attribute" `T.append`
+            "+auto_identifiers" `T.append`
+              -- Is this pandoc's bug?
+              -- `markdown_github` enables gfm_auto_identifiers though....
+            "-ascii_identifiers"
     , "-t", "html5"
     , "--metadata-file", toT $ ".." </> "metadata.yml"
     , "--metadata=date:" `T.append` lastModified]

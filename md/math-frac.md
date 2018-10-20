@@ -34,7 +34,7 @@ standalone '<
 >
 ```
 
-<div class="box-note">
+<div class="box-note" markdown="1">
 
 **メモ**: LaTeX のように、分数がインラインにあるときは自動的に表示形式を変える機能があると良いかもしれません。
 

@@ -4,7 +4,7 @@
 
 下の例は、まるまるコピー＆ペーストして組版することができます。
 
-<div class="result-size-full">
+<div class="result-size-full" markdown="1">
 
 ```satysfi
 @require: stdjareport
