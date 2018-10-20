@@ -60,6 +60,8 @@ standalone '<
 
 バックスラッシュでエスケープすることで、大きさの変わらない単なる丸括弧を書くことはできます。
 
+<div class="result-size-middle">
+
 ```satysfi
 @require: standalone-nekketsuuu
 
@@ -72,6 +74,8 @@ standalone '<
 %% END
 >
 ```
+
+</div>
 
 ## 色々な形の括弧
 
