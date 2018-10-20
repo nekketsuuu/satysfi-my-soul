@@ -38,25 +38,18 @@ standalone '<
 
 丸括弧 `( ... )` を直接 math 内に書くと構文エラーとなります。丸括弧記号は数式とプログラムの境界を示すのに使われているためです。
 
-<div class="satysfi-code" markdown="1">
+```{.satysfi eval="error"}
+@require: standalone-nekketsuuu
 
-**間違ったコード例**
-
-```{.satysfi eval="no"}
+standalone '<
+%% BEGIN
 +math (${
   % これはエラー
   (x + a)(x + b) = x^2 + (a + b)x + ab
 });
+%% END
+>
 ```
-
-**コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)**
-
-```
-! [Syntax Error at Lexer] at "error.saty", line 5, characters 2-3:
-    illegal token '(' in a math area
-```
-
-</div>
 
 バックスラッシュでエスケープすることで、大きさの変わらない単なる丸括弧を書くことはできます。
 
