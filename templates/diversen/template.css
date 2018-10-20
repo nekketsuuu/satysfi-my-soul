@@ -3123,7 +3123,7 @@ body > div:last-of-type {
 
 /* all tables are bordered and striped */
 table {
-  min-width: 100%
+  min-width: 100%;
   margin-bottom: 20px;
   border: 1px solid #dddddd;
   border-collapse: separate;
