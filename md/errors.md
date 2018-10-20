@@ -34,7 +34,6 @@ document (|
 
 ```{.satysfi eval="error"}
 @require: standalone-nekketsuuu
-@require: pervasives
 
 standalone '<
 %% BEGIN
@@ -45,15 +44,44 @@ standalone '<
 >
 ```
 
-```satysfi
+引数を取らないインライン・コマンドの末尾にはセミコロンが必要です。
+
+```{.satysfi eval="type-check-only"}
 @require: standalone-nekketsuuu
-@require: pervasives
 
 standalone '<
 %% BEGIN
 +p {
   \SATySFi;
 }
+%% END
+>
+```
+
+### 数式ブロックの例
+
+```{.satysfi eval="error"}
+@require: standalone-nekketsuuu
+
+standalone '<
+%% BEGIN
++math (${
+  ...
+})
+%% END
+>
+```
+
+`+math` に渡す式引数の末尾にはセミコロンが必要です。
+
+```{.satysfi eval="type-check-only"}
+@require: standalone-nekketsuuu
+
+standalone '<
+%% BEGIN
++math (${
+  ...
+});
 %% END
 >
 ```
