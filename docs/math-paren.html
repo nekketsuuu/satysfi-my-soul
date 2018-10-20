@@ -45,19 +45,19 @@
             <div id="TOC" class="span3">
         <div class="well toc">
         <ul>
-        <li><a>括弧</a><ul>
-        <li><a href="#-1">式を丸括弧で囲う</a></li>
-        <li><a href="#-4">色々な形の括弧</a></li>
-        <li><a href="#-5">集合</a></li>
-        <li><a href="#-6">関数適用</a></li>
+        <li><a href="#括弧">括弧</a><ul>
+        <li><a href="#式を丸括弧で囲う">式を丸括弧で囲う</a></li>
+        <li><a href="#色々な形の括弧">色々な形の括弧</a></li>
+        <li><a href="#集合">集合</a></li>
+        <li><a href="#関数適用">関数適用</a></li>
         </ul></li>
         </ul>
         </div>
       </div>
             <div class="span9">
-            <h1>括弧</h1>
+            <h1 id="括弧">括弧</h1>
 <p>このページでは、SATySFi の数式で括弧を扱う方法について書きます。math.satyh を使っています。</p>
-<h2 id="-1">式を丸括弧で囲う</h2>
+<h2 id="式を丸括弧で囲う">式を丸括弧で囲う</h2>
 <p><code>\paren{ ... }</code> を使うと、中身を丸括弧で囲うことができます。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -66,9 +66,9 @@
 });
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output10.png" /></span></p>
+<p><span class="result-img"><img src="img/output11.png" /></span></p>
 </div>
-<h3 id="-2">括弧の大きさ</h3>
+<h3 id="括弧の大きさ">括弧の大きさ</h3>
 <p><code>\paren{ ... }</code> の丸括弧は中身に応じて大きさが変わります。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -77,25 +77,24 @@
 });
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output11.png" /></span></p>
+<p><span class="result-img"><img src="img/output12.png" /></span></p>
 </div>
-<h3 id="-3">丸括弧を直接書くとエラー</h3>
+<h3 id="丸括弧を直接書くとエラー">丸括弧を直接書くとエラー</h3>
 <p>丸括弧 <code>( ... )</code> を直接 math 内に書くと構文エラーとなります。丸括弧記号は数式とプログラムの境界を示すのに使われているためです。</p>
 <div class="satysfi-code">
-
 <p><strong>間違ったコード例</strong></p>
-<pre class="{.satysfi"><code>+math (${
+<pre class="satysfi"><code>+math (${
   % これはエラー
   (x + a)(x + b) = x^2 + (a + b)x + ab
 });
 </code></pre>
 <p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
-<pre><code>! [Syntax Error at Lexer] at &quot;error.saty&quot;, line 5, characters 2-3:
+<pre class="satysfi-error"><code>! [Syntax Error at Lexer] at &quot;must-error.saty&quot;, line 7, characters 2-3:
     illegal token &#39;(&#39; in a math area
 </code></pre>
 </div>
-
 <p>バックスラッシュでエスケープすることで、大きさの変わらない単なる丸括弧を書くことはできます。</p>
+<div class="result-size-middle">
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>+align [
@@ -104,9 +103,10 @@
 ];
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output12.png" /></span></p>
+<p><span class="result-img"><img src="img/output13.png" /></span></p>
 </div>
-<h2 id="-4">色々な形の括弧</h2>
+</div>
+<h2 id="色々な形の括弧">色々な形の括弧</h2>
 <p>丸括弧以外の括弧も用意されています。</p>
 <table>
 <thead>
@@ -131,7 +131,6 @@
 </tbody>
 </table>
 <div class="result-size-middle">
-
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>+align [
@@ -141,11 +140,10 @@
 ];
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output13.png" /></span></p>
+<p><span class="result-img"><img src="img/output14.png" /></span></p>
 </div>
 </div>
-
-<h2 id="-5">集合</h2>
+<h2 id="集合">集合</h2>
 <p>集合を表すためにはコマンド <code>\set</code> が使えます。縦棒によるセパレータが真ん中に入る <code>\setsep</code> も用意されています。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -156,9 +154,9 @@
 );
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output14.png" /></span></p>
+<p><span class="result-img"><img src="img/output15.png" /></span></p>
 </div>
-<h2 id="-6">関数適用</h2>
+<h2 id="関数適用">関数適用</h2>
 <p>関数を適用するときの丸括弧 <code>f(x)</code> を表現するためには <code>\app</code> が使えます。<code>f \paren{x}</code> と書くより構造がはっきりするので便利です。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -167,7 +165,7 @@
 });
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output15.png" /></span></p>
+<p><span class="result-img"><img src="img/output16.png" /></span></p>
 </div>
             </div>
     </div>

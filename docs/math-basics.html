@@ -34,7 +34,7 @@
       <div class="container">
         <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
         <ul class="nav pull-right doc-info">
-                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 19 日</p></li>
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 20 日</p></li>
                                         <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
                   </ul>
       </div>
@@ -45,19 +45,19 @@
             <div id="TOC" class="span3">
         <div class="well toc">
         <ul>
-        <li><a>数式の基本的な使い方</a><ul>
-        <li><a href="#math-">math 型の値</a></li>
-        <li><a href="#-1">数式ブロック</a></li>
-        <li><a href="#-4">数式を並べる</a></li>
-        <li><a href="#-6">関連</a></li>
+        <li><a href="#数式の基本的な使い方">数式の基本的な使い方</a><ul>
+        <li><a href="#math-型の値">math 型の値</a></li>
+        <li><a href="#数式ブロック">数式ブロック</a></li>
+        <li><a href="#数式を並べる">数式を並べる</a></li>
+        <li><a href="#関連">関連</a></li>
         </ul></li>
         </ul>
         </div>
       </div>
             <div class="span9">
-            <h1>数式の基本的な使い方</h1>
+            <h1 id="数式の基本的な使い方">数式の基本的な使い方</h1>
 <p>このページでは、SATySFi の math.satyh を使って数式を扱う方法について書きます。</p>
-<h2 id="math-">math 型の値</h2>
+<h2 id="math-型の値">math 型の値</h2>
 <p><code>${ ... }</code> で囲われた部分は数式として扱われます。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -66,9 +66,9 @@
 }
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output0.png" /></span></p>
+<p><span class="result-img"><img src="img/output1.png" /></span></p>
 </div>
-<h2 id="-1">数式ブロック</h2>
+<h2 id="数式ブロック">数式ブロック</h2>
 <p>数式からなるブロック要素を作るには、<code>+math</code> を使います。末尾にセミコロンが必要です。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -77,14 +77,12 @@
 });
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output1.png" /></span></p>
+<p><span class="result-img"><img src="img/output2.png" /></span></p>
 </div>
 <div class="box-note">
-
 <p><strong>中級者向け</strong>: <code>+math</code> は標準の math.satyh で提供されているコマンドであり、組み込みコマンドではありません。このため、やろうと思えば自前で <code>+math</code> 相当のコマンドを作ることができます。</p>
 </div>
-
-<h3 id="-2">数式ブロック内でのプログラミング</h3>
+<h3 id="数式ブロック内でのプログラミング">数式ブロック内でのプログラミング</h3>
 <p><code>+math</code> に渡す引数の中にはプログラムを書くことができます。その場限りでよく使う数式を定義するのに便利です。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -99,9 +97,9 @@
 );
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output2.png" /></span></p>
+<p><span class="result-img"><img src="img/output3.png" /></span></p>
 </div>
-<h3 id="-3">数式の中で関数を使う</h3>
+<h3 id="数式の中で関数を使う">数式の中で関数を使う</h3>
 <p>math-cmd を作る <code>let-math</code> を使えば、数式の中で関数適用することもできます。規則的な数式を自動的に生成するとき便利です。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -115,10 +113,9 @@
 );
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output3.png" /></span></p>
+<p><span class="result-img"><img src="img/output4.png" /></span></p>
 </div>
 <div class="box-note">
-
 <p><strong>中級者向け</strong>: <code>let-math</code> の定義本体部分では自分自身の再帰呼び出しができませんが、下のように <code>let-rec</code> と併用することで実装できます。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -136,14 +133,12 @@
 );
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output4.png" /></span></p>
+<p><span class="result-img"><img src="img/output5.png" /></span></p>
 </div>
 </div>
-
-<h2 id="-4">数式を並べる</h2>
+<h2 id="数式を並べる">数式を並べる</h2>
 <p>複数の数式を縦に並べたブロックを作るには <code>+align</code> を使います。引数には数式のリストのリストを渡します。それぞれの数式を分割して渡すと、分割位置で縦に揃えて表示されます。下の例では、等号の左側の位置を揃えています。</p>
 <div class="result-size-middle">
-
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>+align [
@@ -153,13 +148,11 @@
 ];
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output5.png" /></span></p>
+<p><span class="result-img"><img src="img/output6.png" /></span></p>
 </div>
 </div>
-
-<h3 id="-5">左揃えと右揃え</h3>
+<h3 id="左揃えと右揃え">左揃えと右揃え</h3>
 <div class="result-size-middle">
-
 <p><code>+align</code> を使う際、1 行の数式を表すリストの要素は交互に右揃え・左揃えになります。それぞれの数式に説明を付けたいときに便利です。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
@@ -170,18 +163,14 @@
 ];
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output6.png" /></span></p>
+<p><span class="result-img"><img src="img/output7.png" /></span></p>
 </div>
 </div>
-
 <div class="box-note">
-
 <p><strong>注意</strong>: The SATySFibook に載っている Future Work によると、<code>+align : [(math list) list] block-cmd</code> というインターフェースはぎこちないので将来的には LaTeX の <code>\align</code> 環境のようなインターフェースを用意することが検討されています。</p>
 </div>
-
 <!-- TODO: \math-list -->
-
-<h2 id="-6">関連</h2>
+<h2 id="関連">関連</h2>
 <ul>
 <li><a href="index.html#-2">数式</a></li>
 </ul>

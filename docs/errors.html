@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="@nekketsuuu" />
+  <meta name="keywords" content="SATySFi, 組版" />
+
+  <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="menu/css/skins/blue.css" />
+  <link rel="stylesheet" href="menu/css/skins/graphite.css" />
+  <link rel="stylesheet" href="menu/css/skins/grey.css" />
+
+  <link rel="stylesheet" href="https://vjs.zencdn.net/5.4.4/video-js.css" />
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type='text/javascript' src='menu/js/jquery.cookie.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+  <script src="script.js"></script>
+  <script src="jquery.sticky-kit.js "></script>
+
+  <title>典型的なエラー -- SATySFi My Soul</title>
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
+        <ul class="nav pull-right doc-info">
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 20 日</p></li>
+                                        <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
+                  </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+        <ul>
+        <li><a href="#典型的なエラー">典型的なエラー</a><ul>
+        <li><a href="#必要なレコード要素不足">必要なレコード要素不足</a></li>
+        <li><a href="#末尾のセミコロン">末尾のセミコロン</a></li>
+        </ul></li>
+        </ul>
+        </div>
+      </div>
+            <div class="span9">
+            <h1 id="典型的なエラー">典型的なエラー</h1>
+<p>このページでは SATySFi を使っているときに出るエラーをいくつかピックアップし、その解決法を解説します。</p>
+<h2 id="必要なレコード要素不足">必要なレコード要素不足</h2>
+<div class="satysfi-code">
+<p><strong>間違ったコード例</strong></p>
+<pre class="satysfi"><code>@require: stdjabook
+
+document (|
+  title = {渡す要素が足りない例};
+  author = {\@nekketsuuu};
+|) &#39;&lt;
+&gt;
+</code></pre>
+<p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
+<pre class="satysfi-error"><code>! [Type Error] at &quot;must-error.saty&quot;, line 3, character 9 to line 6, character 2:
+    this expression has type
+      (|author : inline-text; title : inline-text|),
+    but is expected of type
+      (&#39;a &lt;: (|author : inline-text; show-title : bool; show-toc : bool; title : inline-text|)).
+</code></pre>
+</div>
+<p>「stdjabook.satyh の <code>document</code> に渡すレコードには <code>show-toc</code>, <code>show-title</code> という要素も必須だが、それらが足りない」ために起こっているエラーです。次のように書くと上手くいきます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>@require: stdjabook
+
+document (|
+  title = {渡す要素が足りている例};
+  author = {\@nekketsuuu};
+  show-toc = false;
+  show-title = true;
+|) &#39;&lt;
+&gt;
+</code></pre>
+</div>
+<h2 id="末尾のセミコロン">末尾のセミコロン</h2>
+<h3 id="インラインテキストでの例">インラインテキストでの例</h3>
+<div class="satysfi-code">
+<p><strong>間違ったコード例</strong></p>
+<pre class="satysfi"><code>+p {
+  \SATySFi
+}
+</code></pre>
+<p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
+<pre class="satysfi-error"><code>! [Syntax Error at Lexer] at &quot;must-error.saty&quot;, line 7, characters 0-1:
+    unexpected token &#39;}&#39; in an active area
+</code></pre>
+</div>
+<p>引数を取らないインライン・コマンドの末尾にはセミコロンが必要です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+p {
+  \SATySFi;
+}
+</code></pre>
+</div>
+<h3 id="数式ブロックの例">数式ブロックの例</h3>
+<div class="satysfi-code">
+<p><strong>間違ったコード例</strong></p>
+<pre class="satysfi"><code>+math (${
+  ...
+})
+</code></pre>
+<p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
+<pre class="satysfi-error"><code>! [Syntax Error at Lexer] at &quot;must-error.saty&quot;, line 9, characters 0-1:
+    unexpected token &#39;&gt;&#39; in an active area
+</code></pre>
+</div>
+<p><code>+math</code> に渡す式引数の末尾にはセミコロンが必要です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+math (${
+  ...
+});
+</code></pre>
+</div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>
