@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="@nekketsuuu" />
+  <meta name="keywords" content="SATySFi, 組版" />
+
+  <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="menu/css/skins/blue.css" />
+  <link rel="stylesheet" href="menu/css/skins/graphite.css" />
+  <link rel="stylesheet" href="menu/css/skins/grey.css" />
+
+  <link rel="stylesheet" href="https://vjs.zencdn.net/5.4.4/video-js.css" />
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type='text/javascript' src='menu/js/jquery.cookie.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+  <script src="script.js"></script>
+  <script src="jquery.sticky-kit.js "></script>
+
+  <title>Fizz buzz -- SATySFi My Soul</title>
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
+        <ul class="nav pull-right doc-info">
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 22 日</p></li>
+                                        <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
+                  </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+        <ul>
+        <li><a href="#fizz-buzz">Fizz buzz</a></li>
+        </ul>
+        </div>
+      </div>
+            <div class="span9">
+            <h1 id="fizz-buzz">Fizz buzz</h1>
+<p>100 までの <a href="https://ja.wikipedia.org/wiki/Fizz_Buzz">fizz buzz</a> です。</p>
+<p>下のコードを見ずに関数 <code>fizzbuzz : int -&gt; string</code> を書くのは、if の構文や文字列リテラルの構文を学ぶのに良いかもしれません。</p>
+<div class="result-size-full">
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>@require: stdja
+@require: standalone
+@require: option
+
+let fizzbuzz n =
+  if n &lt;= 0 then
+    arabic n
+  else if n mod 3 == 0 then
+    (if n mod 5 == 0 then
+      `Fizz Buzz`
+     else
+      `Fizz`)
+  else if n mod 5 == 0 then
+    `Buzz`
+  else
+    arabic n
+let-inline \fizzbuzz n =
+  embed-string (fizzbuzz n)
+
+let space ctx = (
+  let size = get-font-size ctx in
+  let ratio = get-space-ratio-between-scripts ctx Latin Latin in
+  let (r0, r1, r2) = Option.from (0.33, 0.08, 0.16) ratio in
+  let glue = inline-glue (size *&#39; r0) (size *&#39; r1) (size *&#39; r2) in
+  discretionary 0 glue inline-nil inline-nil
+)
+let-inline ctx \fizzbuzz100 = (
+  let-rec aux n pre-ib =
+    if n &gt; 100 then pre-ib
+    else (
+      let str = fizzbuzz n ^ (if n &lt;&gt; 100 then `,` else ` `) in
+      let fbn = embed-string str in
+      let fbn-ib = read-inline ctx fbn in
+      let ib =
+        pre-ib ++ space ctx ++ fbn-ib
+      in aux (n + 1) ib
+    )
+  in aux 1 inline-nil
+)
+
+in
+standalone &#39;&lt;
+  +p {
+    \fizzbuzz100;
+  }
+&gt;
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output17.png" /></span></p>
+</div>
+</div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>
