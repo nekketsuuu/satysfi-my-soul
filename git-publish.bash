@@ -12,7 +12,7 @@ build () {
 
 push () {
     set -x ;
-    git commit ;
+    git commit -m "publish" ;
     git push ;
     set +x ;
 }
@@ -21,11 +21,9 @@ build
 read -p 'Is it OK to commit & push? [y/N]: ' ans
 case $ans in
     [Yy]* )
-	break ;
 	;;
     '' | [Nn]* )
 	exit 0 ;
-	break ;
 	;;
     * )
 	echo 'Please answer yes or no. Aborted.' ;
