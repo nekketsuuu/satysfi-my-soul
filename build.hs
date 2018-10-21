@@ -41,7 +41,8 @@ sourceBases =
   , "math-basics"
   , "math-frac"
   , "math-paren"
-  , "errors"]
+  , "others-errors"
+  , "others-pi"]
 
 -- Main
 
