@@ -34,7 +34,7 @@
 | タイトル | 内容 |
 |:---------|:-----|
 | [典型的なエラー](others-errors.html) | 典型的なエラーメッセージと、その解決法 |
-| fizzbuzz | TODO |
+| [Fizz buzz](others-fizzbuzz.html) | Fizz buzz をするネタ的コード |
 | [円周率の計算](others-pi.html) | 円周率を計算するネタ的コード |
 
 ## ライセンス
