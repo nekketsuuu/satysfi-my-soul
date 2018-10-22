@@ -35,6 +35,7 @@
 |:---------|:-----|
 | [典型的なエラー](others-errors.html) | 典型的なエラーメッセージと、その解決法 |
 | [Fizz buzz](others-fizzbuzz.html) | Fizz buzz をするネタ的コード |
+| [99 Bottles of Beer](others-99-bottles-of-beer.html) | 99 Bottles of Beer をするネタ的コード |
 | [円周率の計算](others-pi.html) | 円周率を計算するネタ的コード |
 
 ## ライセンス

@@ -43,6 +43,7 @@ sourceBases =
   , "math-paren"
   , "others-errors"
   , "others-fizzbuzz"
+  , "others-99-bottles-of-beer"
   , "others-pi"]
 
 -- Main
