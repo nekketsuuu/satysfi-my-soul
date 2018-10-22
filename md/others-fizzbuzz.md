@@ -1,6 +1,6 @@
 # Fizz buzz
 
-100 までの [fizz buzz](https://ja.wikipedia.org/wiki/Fizz_Buzz) です。
+SATySFi による、100 までの [fizz buzz](https://ja.wikipedia.org/wiki/Fizz_Buzz) です。
 
 下のコードを見ずに関数 `fizzbuzz : int -> string` を書くのは、if の構文や文字列リテラルの構文を学ぶのに良いかもしれません。
 
