@@ -26,7 +26,7 @@
   <script src="script.js"></script>
   <script src="jquery.sticky-kit.js "></script>
 
-  <title>99 Bottles of Beer -- SATySFi My Soul</title>
+  <title>Hello, World! -- SATySFi My Soul</title>
 </head>
 <body>
     <div class="navbar navbar-static-top">
@@ -45,75 +45,50 @@
             <div id="TOC" class="span3">
         <div class="well toc">
         <ul>
-        <li><a href="#bottles-of-beer">99 Bottles of Beer</a></li>
+        <li><a href="#hello-world">Hello, World!</a></li>
         </ul>
         </div>
       </div>
             <div class="span9">
-            <h1 id="bottles-of-beer">99 Bottles of Beer</h1>
-<p>SATySFi による <a href="http://www.99-bottles-of-beer.net/">99 Bottles of Beer</a> です。</p>
+            <h1 id="hello-world">Hello, World!</h1>
+<p>SATySFi による Hello World です。</p>
 <div class="result-size-full">
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
-<pre class="satysfi"><code>@require: pervasives
-@require: list
-@require: stdja
-@require: standalone
+<pre class="satysfi"><code>@require: stdjabook
 
-let-rec range n =
-  if n &lt;= 0 then []
-  else (n - 1) :: (range (n - 1))
-
-let newline =
-  discretionary (-10000) inline-nil inline-nil inline-nil
-
-let bottles-of-beer n =
-  let n-str = arabic n in
-  if n &lt;= 0 then
-    `No more bottles of beer on the wall, no more bottles of beer.`
-  else if n == 1 then
-    `1 bottle of beer on the wall, 1 bottle of beer.`
-  else
-    n-str ^ #` bottles of beer on the wall, `# ^ n-str ^ #` bottles of beer.`
-
-let take-one n =
-  let prefix = `Take one down and pass it around, `# in
-  if n &lt;= -1 then
-    `Go to the store and buy some more, 99 bottles of beer on the wall.`
-  else if n == 0 then
-    prefix ^ `no more bottles of beer on the wall.`
-  else if n == 1 then
-    prefix ^ `1 bottle of beer on the wall.`
-  else
-   prefix ^ (arabic n) ^ #` bottles of beer on the wall.`
-
-let-block ctx +ninety-nine-bottles-of-beer =
-  let aux n =
-    let ib-of-line s = (s |&gt; embed-string |&gt; read-inline ctx) ++ inline-fil in
-    let first = ib-of-line (bottles-of-beer n) in
-    let second = ib-of-line (take-one (n - 1)) in
-    let ib = first ++ newline ++ second in
-    form-paragraph ctx ib
-  in
-  (range 100)
-    |&gt; List.map aux
-    |&gt; List.fold-left (+++) block-nil
-
-in
-standalone &#39;&lt;
-  +ninety-nine-bottles-of-beer;
+document (|
+  title = {Hello, World!};
+  author = {\@nekketsuuu};
+  show-toc = false;
+  show-title = true;
+|) &#39;&lt;
+  +p {
+    Hello, World!
+  }
 &gt;
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output22_1.png" /></span></p>
-<p><span class="result-img"><img src="img/output22_2.png" /></span></p>
-<p><span class="result-img"><img src="img/output22_3.png" /></span></p>
-<p><span class="result-img"><img src="img/output22_4.png" /></span></p>
-<p><span class="result-img"><img src="img/output22_5.png" /></span></p>
-<p><span class="result-img"><img src="img/output22_6.png" /></span></p>
-<p><span class="result-img"><img src="img/output22_7.png" /></span></p>
-<p><span class="result-img"><img src="img/output22_8.png" /></span></p>
+<p><span class="result-img"><img src="img/output19_1.png" /></span></p>
 </div>
+</div>
+<p>こちらは、もう少し凝った Hello World です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>@require: stdja
+@require: standalone
+
+let-inline \show-string s =
+  embed-string s
+in
+standalone &#39;&lt;
+ +p {
+   \show-string(`Hello, World!`);
+ }
+&gt;
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output20_1.png" /></span></p>
 </div>
             </div>
     </div>
