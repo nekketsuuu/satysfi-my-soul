@@ -42,6 +42,7 @@ sourceBases =
   , "math-frac"
   , "math-paren"
   , "others-errors"
+  , "others-hello-world"
   , "others-fizzbuzz"
   , "others-99-bottles-of-beer"
   , "others-pi"]
