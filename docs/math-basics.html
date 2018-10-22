@@ -151,6 +151,18 @@
 <p><span class="result-img"><img src="img/output6_1.png" /></span></p>
 </div>
 </div>
+<div class="box-note">
+<p><strong>メモ</strong>: 2018 年 5 月頃に、math list のための糖衣構文が<a href="https://github.com/gfngfn/SATySFi/issues/71">導入されました</a>。<code>${|foo|bar|baz|}</code> が <code>[${foo}; ${bar}; ${baz}]</code> になります。この構文を使うと上の例と同等のものを次のように書けます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+align [
+  ${| \forall a, b, c.\ a \circ \paren{b \circ c} | = \paren{a \circ b} \circ c |};
+  ${| \exists e. \forall a.\ a \circ e            | = a                         |};
+  ${| \forall a. \exists x.\ a \circ x            | = e                         |};
+];
+</code></pre>
+</div>
+</div>
 <h3 id="左揃えと右揃え">左揃えと右揃え</h3>
 <div class="result-size-middle">
 <p><code>+align</code> を使う際、1 行の数式を表すリストの要素は交互に右揃え・左揃えになります。それぞれの数式に説明を付けたいときに便利です。</p>

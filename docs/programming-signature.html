@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="@nekketsuuu" />
+  <meta name="keywords" content="SATySFi, 組版" />
+
+  <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="menu/css/skins/blue.css" />
+  <link rel="stylesheet" href="menu/css/skins/graphite.css" />
+  <link rel="stylesheet" href="menu/css/skins/grey.css" />
+
+  <link rel="stylesheet" href="https://vjs.zencdn.net/5.4.4/video-js.css" />
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type='text/javascript' src='menu/js/jquery.cookie.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+  <script src="script.js"></script>
+  <script src="jquery.sticky-kit.js "></script>
+
+  <title>シグネチャ -- SATySFi My Soul</title>
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
+        <ul class="nav pull-right doc-info">
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 23 日</p></li>
+                                        <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
+                  </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+        <ul>
+        <li><a href="#シグネチャ">シグネチャ</a><ul>
+        <li><a href="#シグネチャの付け方">シグネチャの付け方</a></li>
+        <li><a href="#シグネチャ内での構文">シグネチャ内での構文</a></li>
+        <li><a href="#シグネチャにおける-direct">シグネチャにおける direct</a></li>
+        </ul></li>
+        </ul>
+        </div>
+      </div>
+            <div class="span9">
+            <h1 id="シグネチャ">シグネチャ</h1>
+<p>このページでは SATySFi におけるシグネチャについて解説します。</p>
+<p><strong>先に<a href="programming-module.html">モジュール</a>の知識を仮定します。</strong></p>
+<div class="box-note">
+<p><strong>メモ</strong>: <strong>SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong> SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル <a href="https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html">&quot;Chapter 2 The module system&quot;</a> や M.Hiroi さんの<a href="http://www.geocities.jp/m_hiroi/func/ocaml09.html">「お気楽 OCaml プログラミング入門 モジュール」</a>もある程度参考になります。</p>
+</div>
+<h2 id="シグネチャの付け方">シグネチャの付け方</h2>
+<p>モジュールに「型」を付けることによって、モジュール外からアクセスできる変数を制限することができます。この「型」のことをシグネチャと呼びます。シグネチャは変数名と型のペアの羅列を使ってモジュールの使い方 (インターフェース) を提供しているとも言えます。</p>
+<p>シグネチャは <code>module 名前 : sig インターフェース end = struct 定義列 end</code> という記法でつけることができます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>module ExampleModule : sig
+  val foo : int
+  val bar : int -&gt; int
+end = struct
+  let foo = 42
+  let bar n = n + 42
+
+  % 以下の baz はモジュール外から参照できません
+  let baz = 108
+end
+</code></pre>
+</div>
+<p>上の例で、モジュール外から baz を参照しようとするとエラーが出ます。</p>
+<div class="satysfi-code">
+<p><strong>間違ったコード例</strong></p>
+<pre class="satysfi"><code>% baz はシグネチャに書かれていないので外部に公開されていません
++p {
+  baz = \show-int(ExampleModule.baz);
+}
+</code></pre>
+<p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
+<pre class="satysfi-error"><code>! [Type Error] at &quot;must-error.saty&quot;, line 15, characters 0-10:
+    undefined variable &#39;standalone&#39;.
+</code></pre>
+</div>
+<div class="box-note">
+<p><strong>中級者向け</strong>: SATySFi version 0.0.3 では現状、OCaml にあるようなシグネチャだけの定義 <code>module type 名前 = sig ... end</code> はできません。</p>
+</div>
+<h2 id="シグネチャ内での構文">シグネチャ内での構文</h2>
+<p>以下の表は、シグネチャ内で使える構文を簡易的に示したものです。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">モジュール</th>
+<th style="text-align: left;">シグネチャ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>let f = 中身</code></td>
+<td style="text-align: left;"><code>val f : 型</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>type t = 中身</code></td>
+<td style="text-align: left;"><code>type t = 中身</code> (<code>type t</code> とだけ書くこともできます)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="シグネチャにおける-direct">シグネチャにおける direct</h2>
+<p>インラインコマンドやブロックコマンド、数式コマンドなどのコマンドは、モジュール内でそのまま宣言していると、使うたびにモジュール名を付けないといけなくなり面倒です。シグネチャにおいて <code>val</code> の代わりに <code>direct</code> を使うと、グローバルな名前空間において宣言することができます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>@require: stdja
+@require: standalone
+
+module My : sig
+  direct \name : [] inline-cmd
+end = struct
+  let-inline \name = embed-string `@nekketsuuu`
+end
+
+in
+standalone &#39;&lt;
+  +p {
+    I am \name;.
+  }
+&gt;
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output18_1.png" /></span></p>
+</div>
+<p><code>direct</code> を使わない場合、次のように <code>\M.id</code> 形式や <code>+M.id</code> 形式で書くことになります。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>@require: stdja
+@require: standalone
+
+module My : sig
+  val \name : [] inline-cmd
+end = struct
+  let-inline \name = embed-string `\nekketsuuu`
+end
+
+in
+standalone &#39;&lt;
+  +p {
+    I am \My.name;.
+  }
+&gt;
+</code></pre>
+</div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>
