@@ -41,6 +41,7 @@ sourceBases =
   , "math-basics"
   , "math-frac"
   , "math-paren"
+  , "programming-module"
   , "others-errors"
   , "others-hello-world"
   , "others-fizzbuzz"
