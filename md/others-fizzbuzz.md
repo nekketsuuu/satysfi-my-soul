@@ -23,29 +23,28 @@ let fizzbuzz n =
     `Buzz`
   else
     arabic n
+
 let-inline \fizzbuzz n =
   embed-string (fizzbuzz n)
 
-let space ctx = (
+let space ctx =
   let size = get-font-size ctx in
   let ratio = get-space-ratio-between-scripts ctx Latin Latin in
   let (r0, r1, r2) = Option.from (0.33, 0.08, 0.16) ratio in
   let glue = inline-glue (size *' r0) (size *' r1) (size *' r2) in
   discretionary 0 glue inline-nil inline-nil
-)
-let-inline ctx \fizzbuzz100 = (
+
+let-inline ctx \fizzbuzz100 =
   let-rec aux n pre-ib =
     if n > 100 then pre-ib
-    else (
+    else
       let str = fizzbuzz n ^ (if n <> 100 then `,` else ` `) in
       let fbn = embed-string str in
       let fbn-ib = read-inline ctx fbn in
       let ib =
         pre-ib ++ space ctx ++ fbn-ib
       in aux (n + 1) ib
-    )
   in aux 1 inline-nil
-)
 
 in
 standalone '<
