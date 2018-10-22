@@ -46,4 +46,4 @@ document (|
 
 ## 他のひな型
 
-* [ひな型](index.html#-1)
+* [ひな型](index.html#ひな型)
