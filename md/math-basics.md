@@ -132,6 +132,26 @@ standalone '<
 
 </div>
 
+<div class="box-note" markdown="1">
+
+**メモ**: 2018 年 5 月頃に、math list のための糖衣構文が[導入されました](https://github.com/gfngfn/SATySFi/issues/71)。`${|foo|bar|baz|}` が `[${foo}; ${bar}; ${baz}]` になります。この構文を使うと上の例と同等のものを次のように書けます。
+
+```{.satysfi eval="type-check-only"}
+@require: standalone-nekketsuuu
+
+standalone '<
+%% BEGIN
++align [
+  ${| \forall a, b, c.\ a \circ \paren{b \circ c} | = \paren{a \circ b} \circ c |};
+  ${| \exists e. \forall a.\ a \circ e            | = a                         |};
+  ${| \forall a. \exists x.\ a \circ x            | = e                         |};
+];
+%% END
+>
+```
+
+</div>
+
 ### 左揃えと右揃え
 
 <div class="result-size-middle" markdown="1">
