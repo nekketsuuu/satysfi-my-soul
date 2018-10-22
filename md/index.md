@@ -24,10 +24,15 @@
 
 | タイトル | 内容 |
 |:---------|:-----|
+| 整数と浮動小数点数 | TODO |
+| 文字列 | TODO |
 | 関数定義 | TODO |
 | コマンド定義 | TODO |
 | オプショナル引数 | TODO |
-| [モジュール](programming-module.html) | モジュールとシグネチャの使い方、名前空間 |
+| 代数的データ型 | TODO |
+| レコード | TODO |
+| [モジュール](programming-module.html) | モジュールの使い方、名前空間 |
+| [シグネチャ](programming-signature.html) | シグネチャの使い方とモジュール |
 
 ## その他
 
