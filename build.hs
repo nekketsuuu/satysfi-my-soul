@@ -46,6 +46,7 @@ sourceBases =
   , "others-hello-world"
   , "others-fizzbuzz"
   , "others-99-bottles-of-beer"
+  , "others-day-of-date"
   , "others-kansuji-of-int"
   , "others-pi"]
 
