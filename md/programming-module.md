@@ -49,13 +49,11 @@ standalone '<
 
 <div class="box-note" markdown="1">
 
-**中級者向け**: OCaml にある「モジュールの `open`」に相当する機能は実装されていません。[Issue #79](https://github.com/gfngfn/SATySFi/issues/79) をご覧ください。
+**中級者向け**: SATySFi version 0.0.3 ではまだドキュメントされていませんが、module open に関して以下の構文が用意されています ([Issue #79](https://github.com/gfngfn/SATySFi/issues/79))。
 
-</div>
-
-<div class="box-note" markdown="1">
-
-**中級者向け**: `M.( ... )` という構文で局所的にモジュールを open することができます。
+* `open M` という構文でそこから下において全域的にモジュールを open できます。
+* `open M in ...` という構文で局所的にモジュールを open できます。
+* `M.( ... )` という構文で局所的にモジュールを open できます。
 
 ```{.satysfi eval="type-check-only"}
 module ExampleModule = struct
@@ -63,8 +61,15 @@ module ExampleModule = struct
   let bar n = n + 42
 end
 
-% 以下は let baz = ExampleModule.bar ExampleModule.foo と等価です
-let baz = ExampleModule.(bar foo)
+% 以下の 2 つは let baz = ExampleModule.bar ExampleModule.foo と等価です
+let _ =
+  open ExampleModule in
+  bar foo
+let _ = ExampleModule.(bar foo)
+
+% 以下のようにも書けます (これより下で ExampleModule がすべて open されます)
+open ExampleModule
+let _ = bar foo
 ```
 
 </div>
@@ -117,7 +122,7 @@ standalone '<
 
 <div class="box-note" markdown="1">
 
-**中級者向けメモ**: SATySFi version 0.0.3 では現状、OCaml にあるようなシグネチャだけの定義 `module type = sig ... end` はできません。
+**中級者向け**: SATySFi version 0.0.3 では現状、OCaml にあるようなシグネチャだけの定義 `module type = sig ... end` はできません。
 
 </div>
 
