@@ -34,11 +34,11 @@
 | タイトル | 内容 |
 |:---------|:-----|
 | [典型的なエラー](others-errors.html) | 典型的なエラーメッセージと、その解決法 |
-| [Hello, World!](others-hello-world.html) | Hello World をするコード |
+| [Hello, World!](others-hello-world.html) | Hello World をするネタ的コード |
 | [Fizz buzz](others-fizzbuzz.html) | Fizz buzz をするネタ的コード |
 | [99 Bottles of Beer](others-99-bottles-of-beer.html) | 99 Bottles of Beer をするネタ的コード |
 | [曜日-of-日付](others-day-of-date.html) | 日付から曜日を計算するネタ的コード |
-| kansuji-of-int | 整数を一〇形式の漢数字にするコード |
+| [kansuji-of-int](others-kansuji-of-int.html) | 整数を一〇形式の漢数字にするネタ的コード |
 | xkansuji-of-int | 整数を上数形式の漢数字にするネタ的コード |
 | [円周率の計算](others-pi.html) | 円周率を計算するネタ的コード |
 
