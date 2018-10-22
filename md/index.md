@@ -37,7 +37,7 @@
 | [Hello, World!](others-hello-world.html) | Hello World をするコード |
 | [Fizz buzz](others-fizzbuzz.html) | Fizz buzz をするネタ的コード |
 | [99 Bottles of Beer](others-99-bottles-of-beer.html) | 99 Bottles of Beer をするネタ的コード |
-| [曜日-of-日付](others-day-of-date.md) | 日付から曜日を計算するネタ的コード |
+| [曜日-of-日付](others-day-of-date.html) | 日付から曜日を計算するネタ的コード |
 | kansuji-of-int | 整数を一〇形式の漢数字にするコード |
 | xkansuji-of-int | 整数を上数形式の漢数字にするネタ的コード |
 | [円周率の計算](others-pi.html) | 円周率を計算するネタ的コード |
