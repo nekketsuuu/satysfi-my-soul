@@ -49,7 +49,7 @@
         <li><a href="#モジュールの作成">モジュールの作成</a></li>
         <li><a href="#モジュール内の変数へのアクセス">モジュール内の変数へのアクセス</a></li>
         <li><a href="#シグネチャ">シグネチャ</a></li>
-        <li><a href="#モジュールと-direct">モジュールと direct</a></li>
+        <li><a href="#シグネチャにおける-direct">シグネチャにおける direct</a></li>
         </ul></li>
         </ul>
         </div>
@@ -71,7 +71,7 @@ end
 </code></pre>
 </div>
 <h2 id="モジュール内の変数へのアクセス">モジュール内の変数へのアクセス</h2>
-<p>モジュール <code>M</code> 内にある <code>foo</code> という変数には <code>M.foo</code> とピリオドでつなぐことでアクセスできます。</p>
+<p>モジュール <code>M</code> 内にある <code>foo</code> という変数は <code>M.foo</code> とピリオドでつなぐことで指定できます。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>+p {
@@ -85,10 +85,12 @@ end
 <p><span class="result-img"><img src="img/output17_1.png" /></span></p>
 </div>
 <div class="box-note">
-<p><strong>中級者向け</strong>: OCaml にある「モジュールの <code>open</code>」に相当する機能は実装されていません。<a href="https://github.com/gfngfn/SATySFi/issues/79">Issue #79</a> をご覧ください。</p>
-</div>
-<div class="box-note">
-<p><strong>中級者向け</strong>: <code>M.( ... )</code> という構文で局所的にモジュールを open することができます。</p>
+<p><strong>中級者向け</strong>: SATySFi version 0.0.3 ではまだドキュメントされていませんが、module open に関して以下の構文が用意されています (<a href="https://github.com/gfngfn/SATySFi/issues/79">Issue #79</a>)。</p>
+<ul>
+<li><code>open M</code> という構文でそこから下において全域的にモジュールを open できます。</li>
+<li><code>open M in ...</code> という構文で局所的にモジュールを open できます。</li>
+<li><code>M.( ... )</code> という構文で局所的にモジュールを open できます。</li>
+</ul>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>module ExampleModule = struct
@@ -96,8 +98,15 @@ end
   let bar n = n + 42
 end
 
-% 以下は let baz = ExampleModule.bar ExampleModule.foo と等価です
-let baz = ExampleModule.(bar foo)
+% 以下の 2 つは let baz = ExampleModule.bar ExampleModule.foo と等価です
+let _ =
+  open ExampleModule in
+  bar foo
+let _ = ExampleModule.(bar foo)
+
+% 以下のようにも書けます (これより下で ExampleModule がすべて open されます)
+open ExampleModule
+let _ = bar foo
 </code></pre>
 </div>
 </div>
@@ -132,7 +141,7 @@ end
 </code></pre>
 </div>
 <div class="box-note">
-<p><strong>中級者向けメモ</strong>: SATySFi version 0.0.3 では現状、OCaml にあるようなシグネチャだけの定義 <code>module type = sig ... end</code> はできません。</p>
+<p><strong>中級者向け</strong>: SATySFi version 0.0.3 では現状、OCaml にあるようなシグネチャだけの定義 <code>module type 名前 = sig ... end</code> はできません。</p>
 </div>
 <h3 id="シグネチャ内での構文">シグネチャ内での構文</h3>
 <p>以下の表は、シグネチャ内で使える構文を簡易的に示したものです。</p>
@@ -154,7 +163,7 @@ end
 </tr>
 </tbody>
 </table>
-<h2 id="モジュールと-direct">モジュールと direct</h2>
+<h2 id="シグネチャにおける-direct">シグネチャにおける direct</h2>
 <p>インラインコマンドやブロックコマンド、数式コマンドなどのコマンドは、モジュール内でそのまま宣言していると、使うたびにモジュール名を付けないといけなくなり面倒です。シグネチャにおいて <code>val</code> の代わりに <code>direct</code> を使うと、グローバルな名前空間において宣言することができます。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
