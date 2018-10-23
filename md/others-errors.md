@@ -33,7 +33,8 @@ document (|
 ### インラインテキストでの例
 
 ```{.satysfi eval="error"}
-@require: standalone-nekketsuuu
+@require: stdja
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -47,7 +48,8 @@ standalone '<
 引数を取らないインライン・コマンドの末尾にはセミコロンが必要です。
 
 ```{.satysfi eval="type-check-only"}
-@require: standalone-nekketsuuu
+@require: stdja
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -61,7 +63,8 @@ standalone '<
 ### 数式ブロックの例
 
 ```{.satysfi eval="error"}
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -75,7 +78,8 @@ standalone '<
 `+math` に渡す式引数の末尾にはセミコロンが必要です。
 
 ```{.satysfi eval="type-check-only"}
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN

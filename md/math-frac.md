@@ -7,7 +7,8 @@
 単なる分数 (fraction) を表すには `\frac` コマンドを使います。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -23,7 +24,9 @@ standalone '<
 行内にも分数を書くことができます。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: stdja
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -45,7 +48,8 @@ standalone '<
 `\frac` コマンドを入れ子にすることで連分数を記述できます。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN

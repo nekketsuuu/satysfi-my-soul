@@ -7,7 +7,9 @@
 `${ ... }` で囲われた部分は数式として扱われます。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: stdja
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -23,7 +25,8 @@ standalone '<
 数式からなるブロック要素を作るには、`+math` を使います。末尾にセミコロンが必要です。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -45,7 +48,8 @@ standalone '<
 `+math` に渡す引数の中にはプログラムを書くことができます。その場限りでよく使う数式を定義するのに便利です。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -67,7 +71,8 @@ standalone '<
 math-cmd を作る `let-math` を使えば、数式の中で関数適用することもできます。規則的な数式を自動的に生成するとき便利です。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %%BEGIN
@@ -88,7 +93,8 @@ standalone '<
 **中級者向け**: `let-math` の定義本体部分では自分自身の再帰呼び出しができませんが、下のように `let-rec` と併用することで実装できます。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -117,7 +123,8 @@ standalone '<
 <div class="result-size-middle" markdown="1">
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -137,7 +144,8 @@ standalone '<
 **メモ**: 2018 年 5 月頃に、math list のための糖衣構文が[導入されました](https://github.com/gfngfn/SATySFi/issues/71)。`${|foo|bar|baz|}` が `[${foo}; ${bar}; ${baz}]` になります。この構文を使うと上の例と同等のものを次のように書けます。
 
 ```{.satysfi eval="type-check-only"}
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -159,7 +167,8 @@ standalone '<
 `+align` を使う際、1 行の数式を表すリストの要素は交互に右揃え・左揃えになります。それぞれの数式に説明を付けたいときに便利です。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN

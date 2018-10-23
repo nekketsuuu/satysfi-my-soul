@@ -7,7 +7,8 @@
 `\paren{ ... }` を使うと、中身を丸括弧で囲うことができます。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -23,7 +24,8 @@ standalone '<
 `\paren{ ... }` の丸括弧は中身に応じて大きさが変わります。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -39,7 +41,8 @@ standalone '<
 丸括弧 `( ... )` を直接 math 内に書くと構文エラーとなります。丸括弧記号は数式とプログラムの境界を示すのに使われているためです。
 
 ```{.satysfi eval="error"}
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -56,7 +59,8 @@ standalone '<
 <div class="result-size-middle" markdown="1">
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -83,7 +87,8 @@ standalone '<
 <div class="result-size-middle" markdown="1">
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -103,7 +108,8 @@ standalone '<
 集合を表すためにはコマンド `\set` が使えます。縦棒によるセパレータが真ん中に入る `\setsep` も用意されています。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN
@@ -121,7 +127,8 @@ standalone '<
 関数を適用するときの丸括弧 `f(x)` を表現するためには `\app` が使えます。`f \paren{x}` と書くより構造がはっきりするので便利です。
 
 ```satysfi
-@require: standalone-nekketsuuu
+@require: math
+@require: standalone
 
 standalone '<
 %% BEGIN

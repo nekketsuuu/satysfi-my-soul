@@ -102,7 +102,7 @@ standalone '<
 module My : sig
   val \name : [] inline-cmd
 end = struct
-  let-inline \name = embed-string `\nekketsuuu`
+  let-inline \name = embed-string `@nekketsuuu`
 end
 
 in
