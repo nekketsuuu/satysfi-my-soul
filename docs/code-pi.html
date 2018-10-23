@@ -26,7 +26,7 @@
   <script src="script.js"></script>
   <script src="jquery.sticky-kit.js "></script>
 
-  <title>Hello, World! -- SATySFi My Soul</title>
+  <title>円周率の計算 -- SATySFi My Soul</title>
 </head>
 <body>
     <div class="navbar navbar-static-top">
@@ -34,7 +34,7 @@
       <div class="container">
         <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
         <ul class="nav pull-right doc-info">
-                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 22 日</p></li>
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 23 日</p></li>
                                         <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
                   </ul>
       </div>
@@ -45,51 +45,59 @@
             <div id="TOC" class="span3">
         <div class="well toc">
         <ul>
-        <li><a href="#hello-world">Hello, World!</a></li>
+        <li><a href="#円周率の計算">円周率の計算</a><ul>
+        <li><a href="#関連">関連</a></li>
+        </ul></li>
         </ul>
         </div>
       </div>
             <div class="span9">
-            <h1 id="hello-world">Hello, World!</h1>
-<p>SATySFi による Hello World です。</p>
-<div class="result-size-full">
-<div class="satysfi-code">
-<p><strong>コード例</strong></p>
-<pre class="satysfi"><code>@require: stdjabook
-
-document (|
-  title = {Hello, World!};
-  author = {\@nekketsuuu};
-  show-toc = false;
-  show-title = true;
-|) &#39;&lt;
-  +p {
-    Hello, World!
-  }
-&gt;
-</code></pre>
-<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output19_1.png" /></span></p>
-</div>
-</div>
-<p>こちらは、もう少し凝った Hello World です。</p>
+            <h1 id="円周率の計算">円周率の計算</h1>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>@require: stdja
 @require: standalone
 
-let-inline \show-string s =
-  embed-string s
+let-rec repeat f n x =
+  if n &lt;= 0 then x
+  else repeat f (n - 1) (f x)
+
+let-rec sqrt x =
+  % Babylonian method
+  let x0 = 1.0 +. ((x -. 1.0) *. 0.5) in
+  let aux a = 0.5 *. (a +. x /. a) in
+  repeat aux 20 x0
+
+let pi =
+  % Gauss-Legendre algorithm
+  let aux (a, b, t, p) =
+    let next-a = (a +. b) *. 0.5 in
+    let next-b = sqrt (a *. b) in
+    let sub = a -. next-a in
+    let next-t = t -. p *. sub *. sub in
+    let next-p = 2.0 *. p in
+    (next-a, next-b, next-t, next-p)
+  in
+  let (a, b, t, _) = repeat aux 3 (1.0, 0.70710678118, 0.25, 1.0) in
+  let ab = a +. b in
+  0.25 *. ab *. ab /. t
+
+let-inline \show-float x = embed-string (show-float x)
+
 in
 standalone &#39;&lt;
- +p {
-   \show-string(`Hello, World!`);
- }
+  +p {
+    \show-float(pi);
+  }
 &gt;
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output20_1.png" /></span></p>
+<p><span class="result-img"><img src="img/output26_1.png" /></span></p>
 </div>
+<h2 id="関連">関連</h2>
+<ul>
+<li>もっとすごいもの: <a href="http://d.hatena.ne.jp/zrbabbler/20180314/1520982097">今日はアレの日！</a> -- マクロツイーター</li>
+</ul>
             </div>
     </div>
   </div>

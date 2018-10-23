@@ -57,7 +57,7 @@
             <h1 id="シグネチャ">シグネチャ</h1>
 <p>このページでは SATySFi におけるシグネチャについて解説します。</p>
 <div class="box-note">
-<p><strong>メモ</strong>: <strong>SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong> SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル <a href="https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html">&quot;Chapter 2 The module system&quot;</a> や M.Hiroi さんの<a href="http://www.geocities.jp/m_hiroi/func/ocaml09.html">「お気楽 OCaml プログラミング入門 モジュール」</a>もある程度参考になります。</p>
+<p><strong>注意</strong>: <strong>SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong> SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル <a href="https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html">&quot;Chapter 2 The module system&quot;</a> や M.Hiroi さんの<a href="http://www.geocities.jp/m_hiroi/func/ocaml09.html">「お気楽 OCaml プログラミング入門 モジュール」</a>もある程度参考になります。</p>
 </div>
 <p><strong>先に<a href="programming-module.html">モジュール</a>の知識を仮定します。</strong></p>
 <h2 id="シグネチャの付け方">シグネチャの付け方</h2>
@@ -145,7 +145,7 @@ standalone &#39;&lt;
 module My : sig
   val \name : [] inline-cmd
 end = struct
-  let-inline \name = embed-string `\nekketsuuu`
+  let-inline \name = embed-string `@nekketsuuu`
 end
 
 in

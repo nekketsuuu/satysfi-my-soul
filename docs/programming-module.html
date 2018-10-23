@@ -57,7 +57,7 @@
             <h1 id="モジュール">モジュール</h1>
 <p>このページでは、SATySFi で使える「モジュール」という機能について解説します。</p>
 <div class="box-note">
-<p><strong>メモ</strong>: <strong>SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong> SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル <a href="https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html">&quot;Chapter 2 The module system&quot;</a> や M.Hiroi さんの<a href="http://www.geocities.jp/m_hiroi/func/ocaml09.html">「お気楽 OCaml プログラミング入門 モジュール」</a>もある程度参考になります。</p>
+<p><strong>注意</strong>: <strong>SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong> SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル <a href="https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html">&quot;Chapter 2 The module system&quot;</a> や M.Hiroi さんの<a href="http://www.geocities.jp/m_hiroi/func/ocaml09.html">「お気楽 OCaml プログラミング入門 モジュール」</a>もある程度参考になります。</p>
 </div>
 <h2 id="モジュールの作成">モジュールの作成</h2>
 <p>SATySFi におけるモジュールは、名前空間を切り分けつつ実装を抽象化したいときに便利な言語機能です。<code>module 名前 = struct 定義列 end</code> という記法で作成することができます。通常の変数名と異なり、モジュール名の 1 文字目は大文字でなければいけません。</p>

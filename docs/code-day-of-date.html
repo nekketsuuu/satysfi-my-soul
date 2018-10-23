@@ -26,7 +26,7 @@
   <script src="script.js"></script>
   <script src="jquery.sticky-kit.js "></script>
 
-  <title>kansuji-of-int -- SATySFi My Soul</title>
+  <title>曜日-of-日付 -- SATySFi My Soul</title>
 </head>
 <body>
     <div class="navbar navbar-static-top">
@@ -45,69 +45,86 @@
             <div id="TOC" class="span3">
         <div class="well toc">
         <ul>
-        <li><a href="#kansuji-of-int">kansuji-of-int</a></li>
+        <li><a href="#曜日-of-日付">曜日-of-日付</a></li>
         </ul>
         </div>
       </div>
             <div class="span9">
-            <h1 id="kansuji-of-int">kansuji-of-int</h1>
-<p>SATySFi で整数を漢数字にするコマンドを作ってみました。</p>
-<p>参考: pTeX の <code>\kansuji</code> プリミティブ</p>
+            <h1 id="曜日-of-日付">曜日-of-日付</h1>
+<p>SATySFi で<a href="https://ja.wikipedia.org/wiki/%E3%83%84%E3%82%A7%E3%83%A9%E3%83%BC%E3%81%AE%E5%85%AC%E5%BC%8F">ツェラーの公式</a>を使って日付から曜日を計算するコードです。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
-<pre class="satysfi"><code>@require: list
-@require: stdja
+<pre class="satysfi"><code>@require: stdja
 @require: standalone
 
-let kanji-digits = [`〇`; `一`; `二`; `三`; `四`; `五`; `六`; `七`; `八`; `九`]
-let daiji-digits = [`零`; `壱`; `弐`; `参`; `肆`; `伍`; `陸`; `漆`; `捌`; `玖`]
+% 日付と曜日を表す型の定義
 
-let-rec range n =
-  if n &lt;= 0 then []
-  else n :: range (n - 1)
+type date = (|
+  year  : int;
+  month : int;
+  date  : int;
+|)
 
-% n &gt;= 0 を仮定しています
-let digits-of-int n =
-  let-rec aux n =
-    if n &lt; 10 then [n]
-    else (n mod 10) :: (aux (n / 10))
-  in List.reverse (aux n)
+type day = Mon | Tue | Wed | Thu | Fri | Sat | Sun
 
-let nth-ignore n lst =
-  match List.nth n lst with
-  | Some(s) -&gt; s
-  | None -&gt; `■`
+let day-of-int n =
+  let h = n mod 7 in
+  match h with
+  | 1 -&gt; Sun
+  | 2 -&gt; Mon
+  | 3 -&gt; Tue
+  | 4 -&gt; Wed
+  | 5 -&gt; Thu
+  | 6 -&gt; Fri
+  | _ -&gt; Sat
 
-% 大字は「壱萬」など位取りのある記法には対応していません
-let kansuji-of-int ?:is-daiji-opt n =
-  let (prefix, n) =
-    if n &lt; 0 then (`マイナス`, -n)
-    else (` `, n)
+let string-of-day-ja d =
+  match d with
+  | Mon -&gt; `月`
+  | Tue -&gt; `火`
+  | Wed -&gt; `水`
+  | Thu -&gt; `木`
+  | Fri -&gt; `金`
+  | Sat -&gt; `土`
+  | Sun -&gt; `日`
+
+% ツェラーの公式による曜日計算
+% ただし、グレゴリオ暦を仮定します
+% y &gt;= 1582 程度を仮定します
+
+let get-day date =
+  let y =
+    let base =
+      if date#month &lt;= 2 then date#year - 1
+      else date#year
+    in
+    if base &gt;= 0 then base
+    else 1 - base
   in
-  let digits = digits-of-int n in
-  let kanjis =
-    match is-daiji-opt with
-    | Some(true) -&gt; daiji-digits
-    | _          -&gt; kanji-digits
+  let m =
+    if date#month &lt;= 2 then 12 + date#month
+    else date#month
   in
-  let kansuji =
-    List.fold-right (fun n s -&gt; nth-ignore n kanjis ^ s) ` ` digits
-  in prefix ^ kansuji
+  let d = date#date in
 
-let-inline ctx \kansuji-of-int ?:is-daiji-opt n =
-  let str =
-    match is-daiji-opt with
-    | Some(b) -&gt; kansuji-of-int ?:b n
-    | None    -&gt; kansuji-of-int n
-  in read-inline ctx (embed-string str)
+  let j = y / 100 in
+  let yy = y mod 100 in
+  let gamma = 5 * j + j / 4 in
+
+  let i1 = (13 * (m + 1)) / 5 in
+  let i2 = yy / 4 in
+  let sum = d + i1 + yy + i2 + gamma in
+  day-of-int sum
+
+let-inline \day-ja date =
+  get-day date
+    |&gt; string-of-day-ja
+    |&gt; embed-string
 
 in
 standalone &#39;&lt;
   +p {
-    漢数字：\kansuji-of-int(2018);年\kansuji-of-int(7);月\kansuji-of-int(10);日
-  }
-  +p {
-    なんちゃって日本式大字：\kansuji-of-int?:(true)(2018);年\kansuji-of-int?:(true)(7);月\kansuji-of-int?:(true)(10);日
+    2018 年 7 月 10 日は\day-ja(| year = 2018; month = 7; date = 10 |);曜日です。
   }
 &gt;
 </code></pre>

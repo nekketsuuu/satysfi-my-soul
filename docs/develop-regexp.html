@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="@nekketsuuu" />
+  <meta name="keywords" content="SATySFi, 組版" />
+
+  <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="menu/css/skins/blue.css" />
+  <link rel="stylesheet" href="menu/css/skins/graphite.css" />
+  <link rel="stylesheet" href="menu/css/skins/grey.css" />
+
+  <link rel="stylesheet" href="https://vjs.zencdn.net/5.4.4/video-js.css" />
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type='text/javascript' src='menu/js/jquery.cookie.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+  <script src="script.js"></script>
+  <script src="jquery.sticky-kit.js "></script>
+
+  <title>正規表現 -- SATySFi My Soul</title>
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
+        <ul class="nav pull-right doc-info">
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 23 日</p></li>
+                                        <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
+                  </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+        <ul>
+        <li><a href="#正規表現">正規表現</a><ul>
+        <li><a href="#正規表現を表す値の作成">正規表現を表す値の作成</a></li>
+        <li><a href="#マッチ判定">マッチ判定</a></li>
+        <li><a href="#正規表現を使った文字列分割">正規表現を使った文字列分割</a></li>
+        </ul></li>
+        </ul>
+        </div>
+      </div>
+            <div class="span9">
+            <h1 id="正規表現">正規表現</h1>
+<p>このページでは、SATySFi のライブラリ開発者向けに、SATySFi で使える正規表現について解説します。</p>
+<div class="box-note">
+<p><strong>注意</strong>: **SATySFi の正規表現に関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。正規表現関係のプリミティブは Pull Request <a href="https://github.com/gfngfn/SATySFi/pull/48">#48</a>, <a href="https://github.com/gfngfn/SATySFi/pull/56">#56</a> あたりで議論されています。重要な点として、2018 年 10 月現在まだマルチバイト文字列に対応していません。</p>
+</div>
+<h2 id="正規表現を表す値の作成">正規表現を表す値の作成</h2>
+<p><code>regexp-of-string : string -&gt; regexp</code> プリミティブを使うと正規表現型の値を作ることができます。使える正規表現の構文は SATySFi version 0.0.3 においては OCaml の <code>Str.regexp</code> で使えるものと同じです。<a href="https://caml.inria.fr/pub/docs/manual-ocaml/libref/Str.html">こちらをご覧ください</a>。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>let re = regexp-of-string `nekketsu*`
+</code></pre>
+</div>
+<h2 id="マッチ判定">マッチ判定</h2>
+<p><code>string-match : regexp -&gt; string -&gt; bool</code> プリミティブを使うと正規表現のマッチ判定ができます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>let pat = regexp-of-string `nekketsu*`
+let _ = string-match pat `nekketsuuu`  % --&gt; true
+let _ = string-match pat `nekketuuuu`  % --&gt; false
+</code></pre>
+</div>
+<h2 id="正規表現を使った文字列分割">正規表現を使った文字列分割</h2>
+<p><code>split-on-regexp : regexp -&gt; string -&gt; (int, string) list</code> が用意されています。<code>split-on-regexp pat str</code> で、<code>pat</code> で表現されたセパレーターで <code>str</code> を分割し、それぞれの文字列の最初の半角スペース列を取り除いて返します。返り値は整数と文字列のペアのリストになっており、整数は取り除かれた半角スペースの数です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+p (
+  let pat = regexp-of-string `,` in
+  let show-result iss =
+    let string-of-is (i, s) =
+      `(` ^ (arabic i) ^ `, ` ^ s ^ `)`
+    in
+    let-rec aux iss =
+      match iss with
+      | [] -&gt; ` `
+      | is :: iss -&gt; (string-of-is is) ^ `; ` ^ (aux iss)
+    in
+    embed-string (`[` ^ (aux iss) ^ `]`)
+  in
+  let it = show-result(split-on-regexp pat `aaa, bbb, ccc,  ddd, eee  , fff`) in
+  {
+    #it;
+  }
+);
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output19_1.png" /></span></p>
+</div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>

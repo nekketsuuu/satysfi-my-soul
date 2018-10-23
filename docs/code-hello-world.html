@@ -26,7 +26,7 @@
   <script src="script.js"></script>
   <script src="jquery.sticky-kit.js "></script>
 
-  <title>曜日-of-日付 -- SATySFi My Soul</title>
+  <title>Hello, World! -- SATySFi My Soul</title>
 </head>
 <body>
     <div class="navbar navbar-static-top">
@@ -45,91 +45,50 @@
             <div id="TOC" class="span3">
         <div class="well toc">
         <ul>
-        <li><a href="#曜日-of-日付">曜日-of-日付</a></li>
+        <li><a href="#hello-world">Hello, World!</a></li>
         </ul>
         </div>
       </div>
             <div class="span9">
-            <h1 id="曜日-of-日付">曜日-of-日付</h1>
-<p>SATySFi で<a href="https://ja.wikipedia.org/wiki/%E3%83%84%E3%82%A7%E3%83%A9%E3%83%BC%E3%81%AE%E5%85%AC%E5%BC%8F">ツェラーの公式</a>を使って日付から曜日を計算するコードです。</p>
+            <h1 id="hello-world">Hello, World!</h1>
+<p>SATySFi による Hello World です。</p>
+<div class="result-size-full">
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>@require: stdjabook
+
+document (|
+  title = {Hello, World!};
+  author = {\@nekketsuuu};
+  show-toc = false;
+  show-title = true;
+|) &#39;&lt;
+  +p {
+    Hello, World!
+  }
+&gt;
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output20_1.png" /></span></p>
+</div>
+</div>
+<p>こちらは、もう少し凝った Hello World です。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>@require: stdja
 @require: standalone
 
-% 日付と曜日を表す型の定義
-
-type date = (|
-  year  : int;
-  month : int;
-  date  : int;
-|)
-
-type day = Mon | Tue | Wed | Thu | Fri | Sat | Sun
-
-let day-of-int n =
-  let h = n mod 7 in
-  match h with
-  | 1 -&gt; Sun
-  | 2 -&gt; Mon
-  | 3 -&gt; Tue
-  | 4 -&gt; Wed
-  | 5 -&gt; Thu
-  | 6 -&gt; Fri
-  | _ -&gt; Sat
-
-let string-of-day-ja d =
-  match d with
-  | Mon -&gt; `月`
-  | Tue -&gt; `火`
-  | Wed -&gt; `水`
-  | Thu -&gt; `木`
-  | Fri -&gt; `金`
-  | Sat -&gt; `土`
-  | Sun -&gt; `日`
-
-% ツェラーの公式による曜日計算
-% ただし、グレゴリオ暦を仮定します
-% y &gt;= 1582 程度を仮定します
-
-let get-day date =
-  let y =
-    let base =
-      if date#month &lt;= 2 then date#year - 1
-      else date#year
-    in
-    if base &gt;= 0 then base
-    else 1 - base
-  in
-  let m =
-    if date#month &lt;= 2 then 12 + date#month
-    else date#month
-  in
-  let d = date#date in
-
-  let j = y / 100 in
-  let yy = y mod 100 in
-  let gamma = 5 * j + j / 4 in
-
-  let i1 = (13 * (m + 1)) / 5 in
-  let i2 = yy / 4 in
-  let sum = d + i1 + yy + i2 + gamma in
-  day-of-int sum
-
-let-inline \day-ja date =
-  get-day date
-    |&gt; string-of-day-ja
-    |&gt; embed-string
-
+let-inline \show-string s =
+  embed-string s
 in
 standalone &#39;&lt;
-  +p {
-    2018 年 7 月 10 日は\day-ja(| year = 2018; month = 7; date = 10 |);曜日です。
-  }
+ +p {
+   \show-string(`Hello, World!`);
+ }
 &gt;
 </code></pre>
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
-<p><span class="result-img"><img src="img/output23_1.png" /></span></p>
+<p><span class="result-img"><img src="img/output21_1.png" /></span></p>
 </div>
             </div>
     </div>
