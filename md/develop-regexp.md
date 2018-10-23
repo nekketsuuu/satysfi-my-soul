@@ -4,7 +4,7 @@
 
 <div class="box-note" markdown="1">
 
-**注意**: **SATySFi の正規表現に関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。正規表現関係のプリミティブは Pull Request [#48](https://github.com/gfngfn/SATySFi/pull/48), [#56](https://github.com/gfngfn/SATySFi/pull/56) あたりで議論されています。重要な点として、2018 年 10 月現在まだマルチバイト文字列に対応していません。
+**注意**: **SATySFi の正規表現に関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。**正規表現関係のプリミティブは Pull Request [#48](https://github.com/gfngfn/SATySFi/pull/48), [#56](https://github.com/gfngfn/SATySFi/pull/56) あたりで議論されています。重要な点として、2018 年 10 月現在まだマルチバイト文字列に対応していません。
 
 </div>
 
