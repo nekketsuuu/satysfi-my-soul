@@ -62,6 +62,74 @@ standalone '<
 
 </div>
 
+### シグネチャによる抽象化の例
+
+具体例として、自然数を表すモジュール `Nat` を作ろうとしてみましょう。
+
+```{.satysfi eval="type-check-only"}
+module Nat : sig
+  type t
+  val zero : t
+  val succ : t -> t
+end = struct
+  type t = int
+  let zero = 0
+  let succ n = n + 1
+end
+```
+
+このモジュールでは自然数の型として `t` を定義していますが、シグネチャには `type t` とだけ書かれており、型の "実装" が隠蔽されています。したがって次のように書くとエラーが出ます。モジュール `Nat` の内部では int 型の値が使われていますが、その情報は外部に公開されていないのです。
+
+```{.satysfi eval="error"}
+module Nat : sig
+  type t
+  val zero : t
+  val succ : t -> t
+end = struct
+  type t = int
+  let zero = 0
+  let succ n = n + 1
+end
+
+%% BEGIN
+let one = Nat.succ 0
+%% END
+```
+
+以下のように書くと大丈夫です。
+
+```{.satysfi eval="type-check-only"}
+module Nat : sig
+  type t
+  val zero : t
+  val succ : t -> t
+end = struct
+  type t = int
+  let zero = 0
+  let succ n = n + 1
+end
+
+%% BEGIN
+let one = Nat.succ Nat.zero
+%% END
+```
+
+シグネチャによる抽象化を確かめてみるために、シグネチャは変えないまま、実装だけ変えてみます。以下のコードではモジュール内部の実装は変わっていますが、外部の実装は変わっていません。
+
+```{.satysfi eval="type-check-only"}
+module Nat : sig
+  type t
+  val zero : t
+  val succ : t -> t
+end = struct
+  type t = Z | S of t
+  let zero = Z
+  let succ n = S(n)
+end
+
+let one = Nat.succ Nat.zero
+```
+
 ## シグネチャ内での構文
 
 以下の表は、シグネチャ内で使える構文を簡易的に示したものです。
@@ -69,7 +137,9 @@ standalone '<
 | モジュール | シグネチャ |
 |:-----------|:-----------|
 | `let f = 中身` | `val f : 型` |
-| `type t = 中身` | `type t = 中身` (`type t` とだけ書くこともできます) |
+| `type t = 中身` | `type t = 中身` または `type t` (意味は変わります) |
+
+`let-rec f = 中身` や `let-inline f = 中身` 等も `val f : 型` になります。また、コマンド系の関数には下で説明している `direct f : 型` も使えます。
 
 ## シグネチャにおける direct
 
