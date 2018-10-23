@@ -4,7 +4,7 @@
 
 <div class="box-note" markdown="1">
 
-**メモ**: **SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。** SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル ["Chapter 2  The module system"](https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html) や M.Hiroi さんの[「お気楽 OCaml プログラミング入門 モジュール」](http://www.geocities.jp/m_hiroi/func/ocaml09.html)もある程度参考になります。
+**注意**: **SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。** SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル ["Chapter 2  The module system"](https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html) や M.Hiroi さんの[「お気楽 OCaml プログラミング入門 モジュール」](http://www.geocities.jp/m_hiroi/func/ocaml09.html)もある程度参考になります。
 
 </div>
 
