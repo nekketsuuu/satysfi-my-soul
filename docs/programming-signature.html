@@ -165,7 +165,7 @@ let one = Nat.succ Nat.zero
 </tr>
 </tbody>
 </table>
-<p><code>let-rec f = 中身</code> や <code>let-inline f = 中身</code> 等も <code>val f : 型</code> になります。また、コマンド系の関数には下で説明している <code>direct f : 型</code> も使えます。</p>
+<p><code>let-rec f = 中身</code> や <code>let-inline f = 中身</code> 等も <code>val f : 型</code> になります。また、コマンド系の変数には下で説明している <code>direct f : 型</code> も使えます。</p>
 <h2 id="シグネチャにおける-direct">シグネチャにおける direct</h2>
 <p>インラインコマンドやブロックコマンド、数式コマンドなどのコマンドは、モジュール内でそのまま宣言していると、使うたびにモジュール名を付けないといけなくなり面倒です。シグネチャにおいて <code>val</code> の代わりに <code>direct</code> を使うと、グローバルな名前空間において宣言することができます。</p>
 <div class="satysfi-code">
