@@ -56,10 +56,10 @@
             <div class="span9">
             <h1 id="シグネチャ">シグネチャ</h1>
 <p>このページでは SATySFi におけるシグネチャについて解説します。</p>
-<p><strong>先に<a href="programming-module.html">モジュール</a>の知識を仮定します。</strong></p>
 <div class="box-note">
 <p><strong>メモ</strong>: <strong>SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong> SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル <a href="https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html">&quot;Chapter 2 The module system&quot;</a> や M.Hiroi さんの<a href="http://www.geocities.jp/m_hiroi/func/ocaml09.html">「お気楽 OCaml プログラミング入門 モジュール」</a>もある程度参考になります。</p>
 </div>
+<p><strong>先に<a href="programming-module.html">モジュール</a>の知識を仮定します。</strong></p>
 <h2 id="シグネチャの付け方">シグネチャの付け方</h2>
 <p>モジュールに「型」を付けることによって、モジュール外からアクセスできる変数を制限することができます。この「型」のことをシグネチャと呼びます。シグネチャは変数名と型のペアの羅列を使ってモジュールの使い方 (インターフェース) を提供しているとも言えます。</p>
 <p>シグネチャは <code>module 名前 : sig インターフェース end = struct 定義列 end</code> という記法でつけることができます。</p>
@@ -136,7 +136,7 @@ standalone &#39;&lt;
 <p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
 <p><span class="result-img"><img src="img/output18_1.png" /></span></p>
 </div>
-<p><code>direct</code> を使わない場合、次のように <code>\M.id</code> 形式や <code>+M.id</code> 形式で書くことになります。</p>
+<p><code>direct</code> を使わない場合、次のように <code>\M.id</code> 形式や <code>+M.id</code> 形式で書くことになります。何らかの事情で同じ名前のコマンドを複数作りたいときはこちらを採用することになるでしょう。</p>
 <div class="satysfi-code">
 <p><strong>コード例</strong></p>
 <pre class="satysfi"><code>@require: stdja
