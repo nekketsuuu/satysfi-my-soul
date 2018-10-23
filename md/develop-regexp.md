@@ -13,7 +13,7 @@
 `regexp-of-string : string -> regexp` プリミティブを使うと正規表現型の値を作ることができます。使える正規表現の構文は SATySFi version 0.0.3 においては OCaml の `Str.regexp` で使えるものと同じです。[こちらをご覧ください](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Str.html)。
 
 ```{.satysfi eval="type-check-only"}
-let re = regexp-of-string `nekketsu*`
+let pat = regexp-of-string `nekketsu*`
 ```
 
 ## マッチ判定
@@ -40,12 +40,12 @@ standalone '<
   let pat = regexp-of-string `,` in
   let show-result iss =
     let string-of-is (i, s) =
-      `(` ^ (arabic i) ^ `, ` ^ s ^ `)`
+      `(` ^ (arabic i) ^ `, `# ^ s ^ `)`
     in
     let-rec aux iss =
       match iss with
       | [] -> ` `
-      | is :: iss -> (string-of-is is) ^ `; ` ^ (aux iss)
+      | is :: iss -> (string-of-is is) ^ `; `# ^ (aux iss)
     in
     embed-string (`[` ^ (aux iss) ^ `]`)
   in
