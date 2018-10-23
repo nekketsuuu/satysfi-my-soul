@@ -43,13 +43,13 @@ sourceBases =
   , "math-paren"
   , "programming-module"
   , "programming-signature"
-  , "others-errors"
-  , "others-hello-world"
-  , "others-fizzbuzz"
-  , "others-99-bottles-of-beer"
-  , "others-day-of-date"
-  , "others-kansuji-of-int"
-  , "others-pi"]
+  , "code-hello-world"
+  , "code-fizzbuzz"
+  , "code-99-bottles-of-beer"
+  , "code-day-of-date"
+  , "code-kansuji-of-int"
+  , "code-pi"
+  , "others-errors"]
 
 -- Main
 
