@@ -73,7 +73,7 @@ let-inline \day-ja date =
 in
 standalone '<
   +p {
-    2018 年 7 月 10 日は\day-ja(| year = 2018; month = 7; date = 10 |);曜日です。
+    2018年7月10日は\day-ja(| year = 2018; month = 7; date = 10 |);曜日です。
   }
 >
 ```
