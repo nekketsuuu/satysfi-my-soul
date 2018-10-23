@@ -57,7 +57,7 @@
             <h1 id="正規表現">正規表現</h1>
 <p>このページでは、SATySFi のライブラリ開発者向けに、SATySFi で使える正規表現について解説します。</p>
 <div class="box-note">
-<p><strong>注意</strong>: **SATySFi の正規表現に関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。正規表現関係のプリミティブは Pull Request <a href="https://github.com/gfngfn/SATySFi/pull/48">#48</a>, <a href="https://github.com/gfngfn/SATySFi/pull/56">#56</a> あたりで議論されています。重要な点として、2018 年 10 月現在まだマルチバイト文字列に対応していません。</p>
+<p><strong>注意</strong>: <strong>SATySFi の正規表現に関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong>正規表現関係のプリミティブは Pull Request <a href="https://github.com/gfngfn/SATySFi/pull/48">#48</a>, <a href="https://github.com/gfngfn/SATySFi/pull/56">#56</a> あたりで議論されています。重要な点として、2018 年 10 月現在まだマルチバイト文字列に対応していません。</p>
 </div>
 <h2 id="正規表現を表す値の作成">正規表現を表す値の作成</h2>
 <p><code>regexp-of-string : string -&gt; regexp</code> プリミティブを使うと正規表現型の値を作ることができます。使える正規表現の構文は SATySFi version 0.0.3 においては OCaml の <code>Str.regexp</code> で使えるものと同じです。<a href="https://caml.inria.fr/pub/docs/manual-ocaml/libref/Str.html">こちらをご覧ください</a>。</p>
