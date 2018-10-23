@@ -2,13 +2,13 @@
 
 このページでは SATySFi におけるシグネチャについて解説します。
 
-**先に[モジュール](programming-module.html)の知識を仮定します。**
-
 <div class="box-note" markdown="1">
 
 **メモ**: **SATySFi のモジュールに関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。** SATySFi version 0.0.3 時点では OCaml のモジュールと構文が似ているので、OCaml のマニュアル ["Chapter 2  The module system"](https://caml.inria.fr/pub/docs/manual-ocaml/moduleexamples.html) や M.Hiroi さんの[「お気楽 OCaml プログラミング入門 モジュール」](http://www.geocities.jp/m_hiroi/func/ocaml09.html)もある程度参考になります。
 
 </div>
+
+**先に[モジュール](programming-module.html)の知識を仮定します。**
 
 ## シグネチャの付け方
 
@@ -93,7 +93,7 @@ standalone '<
 >
 ```
 
-`direct` を使わない場合、次のように `\M.id` 形式や `+M.id` 形式で書くことになります。
+`direct` を使わない場合、次のように `\M.id` 形式や `+M.id` 形式で書くことになります。何らかの事情で同じ名前のコマンドを複数作りたいときはこちらを採用することになるでしょう。
 
 ```{.satysfi eval="type-check-only"}
 @require: stdja
