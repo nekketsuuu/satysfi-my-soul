@@ -43,6 +43,7 @@ sourceBases =
   , "math-paren"
   , "programming-module"
   , "programming-signature"
+  , "develop-regexp"
   , "code-hello-world"
   , "code-fizzbuzz"
   , "code-99-bottles-of-beer"
