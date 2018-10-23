@@ -60,7 +60,7 @@ standalone '<
 >
 ```
 
-### 数式ブロックの例
+### 式引数の例
 
 ```{.satysfi eval="error"}
 @require: math
