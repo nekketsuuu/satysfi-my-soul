@@ -139,7 +139,7 @@ let one = Nat.succ Nat.zero
 | `let f = 中身` | `val f : 型` |
 | `type t = 中身` | `type t = 中身` または `type t` (意味は変わります) |
 
-`let-rec f = 中身` や `let-inline f = 中身` 等も `val f : 型` になります。また、コマンド系の関数には下で説明している `direct f : 型` も使えます。
+`let-rec f = 中身` や `let-inline f = 中身` 等も `val f : 型` になります。また、コマンド系の変数には下で説明している `direct f : 型` も使えます。
 
 ## シグネチャにおける direct
 
