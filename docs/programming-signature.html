@@ -34,7 +34,7 @@
       <div class="container">
         <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
         <ul class="nav pull-right doc-info">
-                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 23 日</p></li>
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 10 月 24 日</p></li>
                                         <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
                   </ul>
       </div>
@@ -93,6 +93,58 @@ end
 <div class="box-note">
 <p><strong>中級者向け</strong>: SATySFi version 0.0.3 では現状、OCaml にあるようなシグネチャだけの定義 <code>module type 名前 = sig ... end</code> はできません。</p>
 </div>
+<h3 id="シグネチャによる抽象化の例">シグネチャによる抽象化の例</h3>
+<p>具体例として、自然数を表すモジュール <code>Nat</code> を作ろうとしてみましょう。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>module Nat : sig
+  type t
+  val zero : t
+  val succ : t -&gt; t
+end = struct
+  type t = int
+  let zero = 0
+  let succ n = n + 1
+end
+</code></pre>
+</div>
+<p>このモジュールでは自然数の型として <code>t</code> を定義していますが、シグネチャには <code>type t</code> とだけ書かれており、型の &quot;実装&quot; が隠蔽されています。したがって次のように書くとエラーが出ます。モジュール <code>Nat</code> の内部では int 型の値が使われていますが、その情報は外部に公開されていないのです。</p>
+<div class="satysfi-code">
+<p><strong>間違ったコード例</strong></p>
+<pre class="satysfi"><code>let one = Nat.succ 0
+</code></pre>
+<p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
+<pre class="satysfi-error"><code>! [Type Error] at &quot;must-error.saty&quot;, line 4, characters 13-14:
+    this expression has type
+      Nat.t,
+    but is expected of type
+      int.
+    This constraint is required by the expression
+    at &quot;must-error.saty&quot;, line 12, characters 19-20.
+</code></pre>
+</div>
+<p>以下のように書くと大丈夫です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>let one = Nat.succ Nat.zero
+</code></pre>
+</div>
+<p>シグネチャによる抽象化を確かめてみるために、シグネチャは変えないまま、実装だけ変えてみます。以下のコードではモジュール内部の実装は変わっていますが、外部の実装は変わっていません。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>module Nat : sig
+  type t
+  val zero : t
+  val succ : t -&gt; t
+end = struct
+  type t = Z | S of t
+  let zero = Z
+  let succ n = S(n)
+end
+
+let one = Nat.succ Nat.zero
+</code></pre>
+</div>
 <h2 id="シグネチャ内での構文">シグネチャ内での構文</h2>
 <p>以下の表は、シグネチャ内で使える構文を簡易的に示したものです。</p>
 <table>
@@ -109,10 +161,11 @@ end
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>type t = 中身</code></td>
-<td style="text-align: left;"><code>type t = 中身</code> (<code>type t</code> とだけ書くこともできます)</td>
+<td style="text-align: left;"><code>type t = 中身</code> または <code>type t</code> (意味は変わります)</td>
 </tr>
 </tbody>
 </table>
+<p><code>let-rec f = 中身</code> や <code>let-inline f = 中身</code> 等も <code>val f : 型</code> になります。また、コマンド系の関数には下で説明している <code>direct f : 型</code> も使えます。</p>
 <h2 id="シグネチャにおける-direct">シグネチャにおける direct</h2>
 <p>インラインコマンドやブロックコマンド、数式コマンドなどのコマンドは、モジュール内でそのまま宣言していると、使うたびにモジュール名を付けないといけなくなり面倒です。シグネチャにおいて <code>val</code> の代わりに <code>direct</code> を使うと、グローバルな名前空間において宣言することができます。</p>
 <div class="satysfi-code">
