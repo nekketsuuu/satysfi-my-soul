@@ -15,7 +15,7 @@
 ./build.hs
 ```
 
-Don't foreget to build before `git push`. A script `git-publish.bash` is useful for automatical builds.
+Don't forget to build before `git push`. A script `git-publish.bash` is useful for automatic builds.
 
 ```sh
 git config --local alias.publish '!bash ./git-publish.bash'
@@ -25,7 +25,7 @@ git publish
 Alternatively, [codeskyblue/fswatch](https://github.com/codeskyblue/fswatch) can be used to auto-builds.
 
 ```sh
-fswatch  # settings: .fsw.yml
+fswatch  # see .fsw.yml
 ```
 
 ## License
