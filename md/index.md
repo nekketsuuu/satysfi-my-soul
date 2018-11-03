@@ -4,6 +4,8 @@
 
 このサイトでは、SATySFi のコード例を共有します。
 
+SATySFi のインストール方法については [SATySFi Wiki](https://github.com/gfngfn/SATySFi/wiki/SATySFi-Wiki) が参考になります。
+
 ※ SATySFi はまだ初期開発段階です。新しいバージョンでは組版できなかったり挙動が変わっていたりする可能性があります。各コード片についたバージョン情報をご確認ください。
 
 ## ひな型
