@@ -31,7 +31,7 @@ SATySFi のインストール方法については [SATySFi Wiki](https://github
 | 関数定義 | TODO |
 | コマンド定義 | TODO |
 | 関数適用 | TODO (括弧の構文、省略記法、式引数) |
-| [オプショナル引数](programming-optional-arguments.html) | TODO |
+| [オプショナル引数](programming-optional-arguments.html) | ラベル無しオプショナル引数を持つ関数の定義と適用 |
 | 代数的データ型 | TODO |
 | レコード | TODO |
 | [モジュール](programming-module.html) | モジュールの使い方、名前空間 |
