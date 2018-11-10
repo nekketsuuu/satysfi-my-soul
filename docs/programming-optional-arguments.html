@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="@nekketsuuu" />
+  <meta name="keywords" content="SATySFi, 組版" />
+
+  <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="menu/css/skins/blue.css" />
+  <link rel="stylesheet" href="menu/css/skins/graphite.css" />
+  <link rel="stylesheet" href="menu/css/skins/grey.css" />
+
+  <link rel="stylesheet" href="https://vjs.zencdn.net/5.4.4/video-js.css" />
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type='text/javascript' src='menu/js/jquery.cookie.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.hoverIntent.minified.js'></script>
+  <script type='text/javascript' src='menu/js/jquery.dcjqaccordion.2.7.min.js'></script>
+
+  <script src="script.js"></script>
+  <script src="jquery.sticky-kit.js "></script>
+
+  <title>オプショナル引数 -- SATySFi My Soul</title>
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="doc-title"><a href="index.html">SATySFi My Soul</a></span>
+        <ul class="nav pull-right doc-info">
+                              <li><p class="navbar-text">ページ最終更新: 2018 年 11 月 10 日</p></li>
+                                        <li><p class="navbar-text"><a href="https://twitter.com/nekketsuuu">@nekketsuuu</a></p></li>
+                  </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+    <div class="row">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+        <ul>
+        <li><a href="#オプショナル引数">オプショナル引数</a><ul>
+        <li><a href="#オプショナル引数とは">オプショナル引数とは</a></li>
+        <li><a href="#オプショナル引数を持った関数の定義">オプショナル引数を持った関数の定義</a></li>
+        <li><a href="#オプショナル引数の渡し方">オプショナル引数の渡し方</a></li>
+        <li><a href="#オプショナル引数が複数ある場合">オプショナル引数が複数ある場合</a></li>
+        <li><a href="#オプショナル引数を持った関数の型">オプショナル引数を持った関数の型</a></li>
+        </ul></li>
+        </ul>
+        </div>
+      </div>
+            <div class="span9">
+            <h1 id="オプショナル引数">オプショナル引数</h1>
+<p>このページでは、SATySFi におけるオプショナル引数の使い方について解説します。</p>
+<div class="box-note">
+<p><strong>注意</strong>: <strong>SATySFi のオプショナル引数に関する公式ドキュメントは執筆時点ではまだ無いので、このページに書かれていることは変更される可能性があります。</strong></p>
+</div>
+<h2 id="オプショナル引数とは">オプショナル引数とは</h2>
+<p>オプショナル引数とは、関数の引数であって省略可能なもののことを言います。現在 SATySFi ではラベル無しのオプショナル引数が使えるようになっています。</p>
+<p>たとえば LaTeX の <code>\sqrt</code> は <code>\sqrt{x + y}</code> と書いて二乗根を書くこともできれば、<code>\sqrt[3]{x + y}</code> と書いて三乗根を書くこともできます。この <code>[3]</code> の部分が省略可能な引数です。省略された場合はデフォルトの挙動をし、明示された場合はそれに応じた挙動をします。</p>
+<p>SATySFi においても、LaTeX と記法は違いますがオプショナル引数を使うことができます。</p>
+<div class="box-note">
+<p><strong>参考</strong>: <a href="https://ml-lang.connpass.com/event/94284/">ML Day #2</a> で発表された gfn さんによる解説<a href="https://drive.google.com/file/d/16U8udiwfF2rd_6L5rk-2H-JqDp_Dfy7p/view">「ラベルなしオプション引数の型システムと型推論」</a>が公開されています。オプショナル引数導入の動機と、その型システムについて書いてあります。</p>
+</div>
+<h2 id="オプショナル引数を持った関数の定義">オプショナル引数を持った関数の定義</h2>
+<p>SATySFi において (ラベル無しの) オプショナル引数を持った関数を定義するには、引数の先頭に <code>?:</code> をつけます。2 つ例を挙げてみます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>let range ?:startopt stop =
+  let start =
+    match startopt with
+    | None -&gt; 0
+    | Some(n) -&gt; n
+  in
+  let-rec aux n =
+    if n &gt;= stop then []
+    else n :: (aux (n + 1))
+  in
+  aux start
+</code></pre>
+</div>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>let-inline ctx \enlarge ?:coloropt it =
+  let size = get-font-size ctx in
+  let color =
+    match coloropt with
+    | None -&gt; Color.black
+    | Some(c) -&gt; c
+  in
+  let ctx =
+    ctx |&gt; set-font-size (size *&#39; 1.5)
+        |&gt; set-text-color color
+  in
+  read-inline ctx it
+</code></pre>
+</div>
+<h3 id="オプショナル引数の型">オプショナル引数の型</h3>
+<p>SATySFi では、<code>t</code> 型の値が渡されることが期待されるオプショナル引数自体の型は <code>t option</code> 型になります。</p>
+<p><code>t option</code> 型とは <code>None</code> か <code>Some(〈t 型の値〉)</code> で構成される型です。オプショナル引数においては「オプショナル引数が渡されなかった場合」を <code>None</code>、「<code>a</code> が渡された場合」を <code>Some(a)</code> で表します。</p>
+<p>関数の内部でオプショナル引数を評価する際には、この <code>None</code> と <code>Some(a)</code> を上の例のようにパターンマッチすれば良いです。いちいち <code>match</code> を書くのが面倒くさければ、option.satyg の <code>Option.from : 'a -&gt; 'a option -&gt; 'a</code> を使うと便利です。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>% 上の例を書き直すとこうなります
+let color = Option.from Color.black coloropt
+</code></pre>
+</div>
+<h3 id="オプショナル引数の位置">オプショナル引数の位置</h3>
+<p>SATySFi では、関数の最後の引数をラベル無しオプショナル引数にすることは構文上できません。現状少し分かりにくいエラーメッセージが出るので気づきにくいため、ご注意ください。</p>
+<div class="satysfi-code">
+<p><strong>間違ったコード例</strong></p>
+<pre class="satysfi"><code>let f x y ?:zopt =
+  let z = Option.from 42 zopt in
+  x + y + z
+</code></pre>
+<p><strong>コード例を組版しようとしたときのエラー例 (SATySFi version 0.0.3)</strong></p>
+<pre class="satysfi-error"><code>! [Type Error] at &quot;must-error.saty&quot;, line 6, characters 25-29:
+    undefined variable &#39;zopt&#39;.
+</code></pre>
+</div>
+<h2 id="オプショナル引数の渡し方">オプショナル引数の渡し方</h2>
+<p>SATySFi でオプショナル引数を渡すには、引数の先頭に <code>?:</code> を付けます。ここでは 2 つ例を示してみます。</p>
+<h3 id="例1-関数">例1: 関数</h3>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+p {
+  \show-int-list(range 10);
+}
++p {
+  \show-int-list(range ?:3 10);
+}
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output17_1.png" /></span></p>
+</div>
+<h3 id="例2-インラインコマンド">例2: インラインコマンド</h3>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>+p {
+  あいうえお \enlarge{かきくけこ}
+  さしすせそ \enlarge?:(Color.red){たちつてと}
+}
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output18_1.png" /></span></p>
+</div>
+<h2 id="オプショナル引数が複数ある場合">オプショナル引数が複数ある場合</h2>
+<p>ラベル無しオプショナル引数は複数書くことができます。複数のオプショナル引数を適用する場合、順番が大事です。先頭側にあるオプショナル引数が優先的に処理されます。</p>
+<div class="result-size-middle">
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>% オプショナル引数が 2 つあります
+let f ?:xopt ?:yopt z =
+  let x = Option.from 0 xopt in
+  let y = Option.from 0 yopt in
+  `x = `# ^ (arabic x) ^ `, y = `# ^ (arabic y) ^ `, z = `# ^ (arabic z)
+
+in &#39;&lt;
+  +p {
+    % 2 つとも省略した例
+    \show-string(f 3);
+  }
+  +p {
+    % 2 つとも適用した例
+    \show-string(f ?:1 ?:2 3);
+  }
+  +p {
+    % オプショナル引数を 1 つだけ適用すると、x の方に入ります
+    \show-string(f ?:1 3);
+  }
+  +p {
+    % x を飛び越して y だけに渡すこともできます
+    % ?* と書くとオプショナル引数をひとつ無視できます
+    \show-string(f ?* ?:2 3);
+  }
+&gt;
+</code></pre>
+<p><strong>コード例の組版結果 (SATySFi version 0.0.3)</strong></p>
+<p><span class="result-img"><img src="img/output19_1.png" /></span></p>
+</div>
+</div>
+<div class="box-note">
+<p><strong>メモ</strong>: 現状 SATySFi のオプショナル引数はラベル無しなので、複数のオプショナル引数がある場合、適用する側からは順番でしかどの引数なのか判断できません。将来的にラベル付きオプショナル引数やレコードのオプショナルフィールドが実装されるかもしれないので、そうなるとより使いやすくなるでしょう。</p>
+</div>
+<h2 id="オプショナル引数を持った関数の型">オプショナル引数を持った関数の型</h2>
+<p>オプショナル引数を持った関数を<a href="programming-signature.html">シグネチャ</a>に書こうとすると型を書く必要があります。SATySFi において通常の関数型は <code>a -&gt; b</code> と書きますが、オプショナル引数を受け取る関数の型は <code>a ?-&gt; b</code> と書きます。</p>
+<p>また <code>direct</code> の型に書く場合は引数の末尾に <code>?</code> と書くことでオプショナル引数を表現することができます。</p>
+<div class="satysfi-code">
+<p><strong>コード例</strong></p>
+<pre class="satysfi"><code>module Example : sig
+  val range : int ?-&gt; int -&gt; int list
+  direct \enlarge : [color?; inline-text] inline-cmd
+end = struct
+  let range ?:startopt stop =
+    let start = Option.from 0 startopt in
+    let-rec aux n =
+      if n &gt;= stop then []
+      else n :: (aux (n + 1))
+    in
+    aux start
+
+  let-inline ctx \enlarge ?:coloropt it =
+    let size = get-font-size ctx in
+    let color = Option.from Color.black coloropt in
+    let ctx =
+      ctx |&gt; set-font-size (size *&#39; 1.5)
+          |&gt; set-text-color color
+    in
+    read-inline ctx it
+end
+</code></pre>
+</div>
+            </div>
+    </div>
+  </div>
+  <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+
+</body>
+</html>
