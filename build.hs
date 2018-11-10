@@ -41,6 +41,7 @@ sourceBases =
   , "math-basics"
   , "math-frac"
   , "math-paren"
+  , "programming-optional-arguments"
   , "programming-module"
   , "programming-signature"
   , "develop-regexp"
